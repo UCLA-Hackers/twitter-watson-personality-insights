@@ -29,7 +29,6 @@ var personality_insights = new PersonalityInsightsV3({
     version_date: '2016-10-20'
 });
 
-
 // -------------------- II. MAIN PROCESS -------------------
 // Promise Function
 T.get('/search/tweets.json', paramsTwitter)
