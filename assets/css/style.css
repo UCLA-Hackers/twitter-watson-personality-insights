@@ -1,0 +1,398 @@
+/** {
+	border: red 1px solid;
+}*/
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*.header-container {
+	width: 100%;
+	height: 900px;
+	border-left: none;
+	border-right: none;
+	position: relative;
+	padding: 20px;
+}*/
+
+/* header */
+
+	.jumbotron {
+		position: relative;
+		background-color: transparent !important;
+	}
+
+	#video-background {
+		z-index: -1;
+		position: absolute;
+		top: 0%;
+		right: 0%;
+		bottom: 0%;
+		left: 0%;
+		/*height: 100%;*/
+		width: 100%;
+		overflow: hidden;
+	}
+
+	video {
+		opacity: 0.5; 
+	}
+
+	#header h1 {
+		color: black;
+		z-index: 1;
+		text-align: center;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 10%;
+		letter-spacing: 3px;
+		font-size: 40px;
+	}
+
+	#header p {
+		margin-top: 40px;
+		max-width: 700px;
+		text-align: center; 
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 20px;
+	}
+
+	form {
+		z-index: 1;
+		margin-top: 7%;
+	}
+
+	button {
+		cursor: pointer;
+	}
+
+	#mainNav .navbar-toggler {
+		font-size: 12px;
+		right: 0;
+		padding: 13px;
+		text-transform: uppercase;
+		color: white;
+		border: 0;
+		background-color: #fed136;
+		font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-transform: uppercase;
+	}
+
+	#mainNav .navbar-brand {
+		color: #fed136;
+		font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; 
+	}
+
+	#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+			color: #fec503; 
+	}
+
+	#mainNav .navbar-nav .nav-item .nav-link {
+		font-size: 90%;
+		font-weight: 400;
+		padding: 0.75em 0;
+		letter-spacing: 1px;
+		color: white;
+		font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-transform: uppercase; 
+	}
+
+	#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+		color: red; 
+	}
+
+
+/* twitter */
+
+
+	/* adjusting twitter logo*/
+	#twitter {
+		margin-top: 170px;
+		/*background-image: url("../images/Twitterbird.png");*/
+		/*background-image: url("../images/IBM_Watson_Logo_2017.png");
+		background-position: center;
+		background-repeat: no-repeat;*/
+
+	}
+
+	#twitter h2 {
+/*		letter-spacing: 2px;*/
+		font-size: 40px;
+	}
+
+	#twitter .rounded-circle {
+		width: 150px;
+		height: auto;
+		display: block;
+		margin: auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	/* adjusting titles */
+	#latestTweetTitle p {
+/*		margin-right: auto;
+		margin-left: auto;*/
+/*		float: none;
+		margin: 0 auto;*/
+		text-align: center;
+		font-size: 20px;
+		color: #ff0000;
+		font-weight: bold;
+	}
+
+	/* background for personality profile side */
+	#twitter #personalityProfile {
+	/*background-color: #f0f0f0;*/
+		
+		background-image: url("../images/IBM_Watson_Logo_2017-30.png");
+		background-position: center;
+		background-repeat: no-repeat;
+
+		line-height: 30px;
+	}
+
+	/* keep this just in case this is taken out of the grid */
+	#twitter #latestTweet {
+		/*margin-top: 30px;*/
+		/*margin-left: 30px;*/
+		/*padding-left: 30px*/
+		/*max-width: 468px;
+		max-height: auto;*/
+		background-image: url("../images/Twitterbird-30.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 85%;
+
+	}
+
+	#modalBtn {
+		margin-top: 20px;
+	}
+
+	/* The Modal (background) */
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 15% auto; /* 15% from the top and centered */
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%; /* Could be more or less, depending on screen size */
+	}
+
+	/* The Close Button */
+	.close {
+	    color: #000000;
+	    float: right;
+	    font-size: 20px;
+	    font-weight: bold;
+	    width: 70px;
+	}
+
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+
+/* carousel */
+	#shopping {
+		margin-top: 50px;
+		height: 800px;
+		b/*ackground-image: url("../images/640px-EBay_logo-30.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-si*/ze: 90%;
+	}
+
+	#shopping .container {
+		background-color: #f4f4f4;
+	}
+
+	#shopping img {
+		max-height: 125px;
+		margin-top: 20px;
+	}
+
+	#shopping h2 {
+		/*margin-top: 10px;*/
+
+		font-size: 40px;
+	}
+
+	#shopping .carousel{
+		height: 400px;
+		margin-top: 150px;
+		/*margin-bottom: 150px;*/
+		/*padding-bottom: 100px;*/
+
+	}
+
+	#shop-carousel {
+		padding: 0 10px 30px 10px;
+		margin-top: 30px;
+	}
+
+	/* Control buttons  */
+	#shop-carousel .carousel-control{
+		background: none;
+		color: #222;
+		font-size: 2.3em;
+		text-shadow: none;
+		margin-top: 30px;
+	}
+	
+	/* product image */
+	.carousel-item img {
+		max-width: 200px;
+		max-height:200px;
+	}
+
+	.carousel-indicators {
+		margin-top: 200px;
+		margin-bottom: 35px;
+	}
+
+	/* title of the product */
+	.carousel-item .productTitle {
+		/*font-weight: bold;*/
+		font-size: 20px;
+		font-style: italic;
+	}
+
+	/* Previous button  */
+	.carousel-control-prev {
+		width: 50px;
+	}
+
+	/* clickable carousel */
+	.carousel-item a:link, a:visited, a:hover, a:active {
+		text-decoration: none;
+		color: black;
+	}
+		
+	/*.carousel-inner {
+		margin-bottom: 30px;
+	}*/
+
+	/*.carousel-item a:hover {
+		text-decoration: none;
+	}*/
+
+	.carousel-control-prev-icon {
+	  	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575859' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+	}	/* to change color, change the "fill" attribute */
+	/* Next button  */
+	.carousel-control-next {
+		width: 50px;
+	}
+
+	.carousel-control-next-icon {
+		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575859' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+	}   /* to change color, change the "fill" attribute */ 
+	
+	/* Changes the color of the indicators */
+	#shop-carousel .carousel-indicators li {
+		background: #c0c0c0;
+	}
+	#shop-carousel .carousel-indicators .active {
+		background: #333333;
+	}
+	/* End carousel */
+
+
+	/* team */
+	#about {
+		margin-top: 250px;
+	}
+
+	#about img {
+		width: 150px;
+		height: auto;
+		display: block;
+		margin: auto;
+		/*margin-top: 20px;
+		margin-bottom: 20px;*/
+	}
+
+	#about h2 {
+		font-size: 40px;
+		margin-bottom: 20px;
+	}
+
+	#about .rounded-circle {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	#about p {
+		text-align: center;
+		font-size: 20px;
+		color: #ff0000;
+		font-weight: bold;
+	}
+
+	#about #personalityProfile {
+		margin-bottom: 40px;
+	}
+	
+	#about #name {
+		margin-bottom: 15px;
+	}
+
+	#about {
+		background-image: url("../images/Supreme-logo-30.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 60%;
+	}
+
+	/**
+	  MEDIA QUERIES
+	*/
+
+	/* Small devices (tablets, 768px and up) */
+	@media (min-width: 768px) { 
+	    #shop-carousel 
+	    {
+	      margin-bottom: 0;
+	      padding: 0 40px 30px 40px;
+	    }
+	    
+	}
+
+	/* Small devices (tablets, up to 768px) */
+	@media (max-width: 768px) { 
+	    
+	    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+	    
+	    #shop-carousel .carousel-indicators {
+	        bottom: -20px !important;  
+	    }
+	    #shop-carousel .carousel-indicators li {
+	        display: inline-block;
+	        margin: 0px 5px;
+	        width: 15px;
+	        height: 15px;
+	    }
+	    #shop-carousel .carousel-indicators li.active {
+	        margin: 0px 5px;
+	        width: 20px;
+	        height: 20px;
+	    }
+	}
