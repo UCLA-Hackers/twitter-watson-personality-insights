@@ -53,6 +53,16 @@
 </head>
 <body>
 
+
+<!-- scrolling home button -->
+
+  <div id="upArrow">
+    <br />
+    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
+  </div>
+
+
+
 <!-- header -->
 <section id="intro">
 
@@ -60,83 +70,51 @@
   <div id="menu">
 
       
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">  <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#intro">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
-      </li>
-        <button class="btn btn-outline-secondary nav-link" data-toggle="modal" data-target="#loginModal" id="modalBtn">Login</button>  <!-- what is nav-link and is it needed for the button? -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">  <!-- .modal-lg makes the modal bigger than the default size -->
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login with Your ID</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col">
-                      <div class="js-scroll-trigger">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>         
-    </ul>
-  </div>
-</nav>
-
-
- <!--      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
-        <div class="dropdown-menu"> -->
-                
-
-<!-- <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button> -->
-
-          <!-- modal -->
-          <!-- <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button> -->   <!-- href #login isn't tied to anything -->
-
-
-  <!-- Firebase Google/Twitter/Email Login Display -->
-  <div class="container">
-    <!-- The Modal -->
-    <div id="myFirebaseModal" class="modal">  <!-- okay to change class name -->
-      <!-- Modal content -->
-      <div class="modal-content" id="firebase-login-container">
-        <span class="close">x close</span>
-        <div id="firebaseui-auth-container"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">  <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#intro">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
+          </li>
+          <li class="nav-item" id="log-in">  <!-- the id must be included based on how we built the login this time around -->
+            <!-- Button trigger modal -->
+            <a class="nav-link" data-toggle="modal" data-target="#firebaseModal" id="firebaseModalBtn">
+            Login
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -151,12 +129,12 @@
 
 
       <div class="container">
-    <h1>Twitter Watson Personality Insights</h1>
+  	<h1>Twitter Watson Personality Insights</h1>
       <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
       <!-- </div> -->
        
 
-        <form>
+        <form id="twitterInput">
           <div class="row justify-content-center">
             <div class="col-3">
               <label for="twitterName" class="sr-only">twitter name</label>
@@ -228,7 +206,7 @@
           </dl>
 
           <!-- button triggering modal -->
-          <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button>
+          <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="watsonModalBtn">Click to View Sunburst Profile</button>
 
           <!-- modal -->
           <div class="modal fade" id="sunburstModal" tabindex="-1" role="dialog" aria-labelledby="sunburstModalLabel" aria-hidden="true">
@@ -262,6 +240,38 @@
   </div>
 
 
+
+
+
+        <!--   <button type="button" class="btn btn-outline-success btn-block" id="modalBtn">Click to View Sunburst Profile</button> -->
+          <!-- The Modal -->
+          <!-- <div id="myModal" class="modal"> -->
+            <!-- Modal content -->
+            <!-- <div class="modal-content">
+              <span class="close">x close</span>
+              <img src="assets/images/sunburst_sample.png" />
+            </div>
+          </div> -->
+
+  <!-- modal -->
+  <!-- <div class="container"> -->
+
+    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
+
+<!-- 
+  Firebase Google/Twitter/Email Login Display
+  <div class="container">
+    The Modal
+    <div id="myFirebaseModal" class="modal">
+      Modal content
+      <div class="modal-content" id="firebase-login-container">
+        <span class="close">x close</span>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+  </div>
+
+ -->
 </section>
 
 <!-- shopping carousel -->
@@ -573,24 +583,16 @@
   </div>
 </section>
 
-<!-- smoothscroll -->
-
-  <div id="upArrow">
-    <br />
-    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
-  </div>
-
-
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
   <!-- link p5 file -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.15/p5.min.js"></script>
 
   <!-- link Js file (place at bottom above /body) -->
   <script src="assets/js/main.js" type="text/javascript"></script>
@@ -599,6 +601,28 @@
   <script type="text/javascript" src="assets/js/smoothscroll.min.js"></script>
   
 </body>
+
+  <!-- modal for login only works outside of 'body'. why? -->
+            <div class="modal fade" id="firebaseModal" tabindex="-1" role="dialog" aria-labelledby="firebaseModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="firebaseModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="firebaseui-auth-container"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 </html>
 
 

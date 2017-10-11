@@ -22,6 +22,10 @@
 - Jquery for Dom Manipulation
 - AJAX for API GET requests
 
+## Technologies Considered But Not Used
+#### Use bullets to list out the technologies used. For example,
+- p5.js was not used because of it's native onload property. 
+
 ## Code Explaination
 - Here, you can either provide a brief summary about your code and perhaps what you learned or you can go into specif detail about how you tackled certain tasks.
 - Use code snippets for placing example code and then describing it
