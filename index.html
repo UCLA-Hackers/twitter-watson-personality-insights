@@ -52,15 +52,7 @@
 
 </head>
 <body>
-
-
-<!-- scrolling home button -->
-
-  <div id="upArrow">
-    <br />
-    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
-  </div>
-
+  <div id="pageTop"></div>
 
 
 <!-- header -->
@@ -68,7 +60,6 @@
 
   <!-- navigation -->
   <div id="menu">
-
       
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,24 +91,6 @@
         </ul>
       </div>
     </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 
   <!-- video header -->
@@ -129,7 +102,7 @@
 
 
       <div class="container">
-  	<h1>Twitter Watson Personality Insights</h1>
+    <h1>Twitter Watson Personality Insights</h1>
       <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
       <!-- </div> -->
        
@@ -151,6 +124,12 @@
       </div>
     </div>
   </div>
+  
+  <!-- scrolling home button -->
+  <div id="upArrow">
+    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
+  </div>
+
 </section>  <!-- this closes the entire header section -->
 
 <!-- twitter feed -->
@@ -183,12 +162,6 @@
           <p>Latest Tweet</p>
           <div id="latestTweet">
             <div class="twitterHandleUpdate">
-        <!--     <blockquote class="twitter-tweet">
-              <a class="twitter-timeline"
-              href="https://twitter.com/Pornhub" data-tweet-limit="1" data-chrome="noheader nofooter transparent">
-              Tweets by someone
-              </a>
-            </blockquote> -->
             </div>
           </div>
         </div>
@@ -238,41 +211,8 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-        <!--   <button type="button" class="btn btn-outline-success btn-block" id="modalBtn">Click to View Sunburst Profile</button> -->
-          <!-- The Modal -->
-          <!-- <div id="myModal" class="modal"> -->
-            <!-- Modal content -->
-            <!-- <div class="modal-content">
-              <span class="close">x close</span>
-              <img src="assets/images/sunburst_sample.png" />
-            </div>
-          </div> -->
-
-  <!-- modal -->
-  <!-- <div class="container"> -->
-
-    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
-
-<!-- 
-  Firebase Google/Twitter/Email Login Display
-  <div class="container">
-    The Modal
-    <div id="myFirebaseModal" class="modal">
-      Modal content
-      <div class="modal-content" id="firebase-login-container">
-        <span class="close">x close</span>
-        <div id="firebaseui-auth-container"></div>
-      </div>
-    </div>
-  </div>
-
- -->
 </section>
+
 
 <!-- shopping carousel -->
 
@@ -288,9 +228,6 @@
       <h2>Gift Recommendations</h2>
       </div>
     </div>
-<!--      <div class="row">
-      <div class="col-md-offset-2 col-md-8"> -->
-
     <div class="carousel slide" data-ride="carousel" id="shop-carousel">
       <!-- Bottom Carousel Indicators -->
       <ol class="carousel-indicators">
@@ -301,9 +238,6 @@
       
       <!-- carousel slides / items -->
       <div class="carousel-inner" role="listbox">
-      
-
-    
         <div class="carousel-item active">
           <!-- page 1 -->
           <div class="row">
@@ -576,10 +510,6 @@
         <button class="btn btn-secondary" type="submit">Send</button>
     </div>
     </form>
-
-
-
-
   </div>
 </section>
 
@@ -602,26 +532,29 @@
   
 </body>
 
+
+
   <!-- modal for login only works outside of 'body'. why? -->
-            <div class="modal fade" id="firebaseModal" tabindex="-1" role="dialog" aria-labelledby="firebaseModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="firebaseModalLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div id="firebaseui-auth-container"></div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div class="modal fade" id="firebaseModal" tabindex="-1" role="dialog" aria-labelledby="firebaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="firebaseModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="firebaseui-auth-container"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </html>
 

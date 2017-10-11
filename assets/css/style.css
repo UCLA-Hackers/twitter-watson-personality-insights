@@ -6,6 +6,11 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+button {
+	cursor: pointer;
+}
+
+
 /* header */
 
 	#intro {
@@ -20,22 +25,22 @@ body {
 	}
 
 
-	#menu .navbar-nav {
+	#intro .navbar-nav {
 		text-align: right;
 		padding-right: 5px;
 	}
 
-	#menu #firebaseModalBtn {
+	#intro #firebaseModalBtn {
 		color: #ff0000;
 		cursor: pointer;
 	}
 
-	.jumbotron {
+	#intro .jumbotron {
 		position: relative;
 		background-color: transparent !important;
 	}
 
-	#video-background {
+	#intro #video-background {
 		z-index: -1;
 		position: absolute;
 		top: 0%;
@@ -47,11 +52,11 @@ body {
 		overflow: hidden;
 	}
 
-	video {
+	#intro video {
 		opacity: 0.5; 
 	}
 
-	#header h1 {
+	#intro #header h1 {
 		color: black;
 		z-index: 1;
 		text-align: center;
@@ -62,7 +67,7 @@ body {
 		font-size: 40px;
 	}
 
-	#header p {
+	#intro #header p {
 		margin-top: 40px;
 		max-width: 700px;
 		text-align: center; 
@@ -71,30 +76,39 @@ body {
 		font-size: 20px;
 	}
 
-	form {
+	#intro form {
 		z-index: 1;
 		margin-top: 7%;
 	}
 
-	button {
-		cursor: pointer;
-	}
 
 	#intro #firebaseModal {
 		z-index: auto;
 	}
 
+	/* up arrow button */
+	#intro #upArrow {
+		text-align: right; 
+		display: none; /* Hidden by default */
+		position: fixed; /* Fixed/sticky position */
+	    bottom: 20px; /* Place the button at the bottom of the page */
+	    right: 45px; /* Place the button 30px from the right */
+	    z-index: 99; /* Make sure it does not overlap */
+	    padding: 15px; /* Some padding */
+	    border-radius: 10px; /* Rounded corners */
+	}
+
+	#intro #upArrow img {
+		width: 4%;
+		height: auto;
+		cursor: pointer;
+	}
 
 /* twitter */
-
 
 	/* adjusting twitter logo*/
 	#twitter {
 		margin-top: 50px;
-		/*background-image: url("../images/Twitterbird.png");*/
-		/*background-image: url("../images/IBM_Watson_Logo_2017.png");
-		background-position: center;
-		background-repeat: no-repeat;*/
 	}
 
 	#twitter .container {
@@ -105,7 +119,6 @@ body {
 
 
 	#twitter h2 {
-/*		letter-spacing: 2px;*/
 		font-size: 40px;
 	}
 
@@ -119,11 +132,7 @@ body {
 	}
 
 	/* adjusting titles */
-	#latestTweetTitle p {
-/*		margin-right: auto;
-		margin-left: auto;*/
-/*		float: none;
-		margin: 0 auto;*/
+	#twitter #latestTweetTitle p {
 		text-align: center;
 		font-size: 20px;
 		color: #ff0000;
@@ -132,38 +141,30 @@ body {
 
 	/* background for personality profile side */
 	#twitter #personalityProfile {
-	/*background-color: #f0f0f0;*/
-		
 		background-image: url("../images/IBM_Watson_Logo_2017-30.png");
 		background-position: center;
 		background-repeat: no-repeat;
-
 		line-height: 30px;
+		background-size: auto 100%;
 	}
 
 	/* keep this just in case this is taken out of the grid */
 	#twitter #latestTweet {
-		/*margin-top: 30px;*/
-		/*margin-left: 30px;*/
-		/*padding-left: 30px*/
-		/*max-width: 468px;
-		max-height: auto;*/
 		background-image: url("../images/Twitterbird-30.png");
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: 85%;
-
+		background-size: auto 100%;
 	}
 
 	#twitter #personalityProfile {
 		border-left: 1px solid #000000;
 	}
 
-	#watsonModalBtn {
+	#twitter #watsonModalBtn {
 		margin-top: 20px;
 	}
 
-	#sunburstModal img {
+	#twitter #sunburstModal img {
 		width: 100%;
 		height: auto;
 	}
@@ -172,10 +173,6 @@ body {
 	#shopping {
 		margin-top: 50px;
 		height: 700px;
-		/*background-image: url("../images/640px-EBay_logo-30.png");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: 90%;*/
 	}
 
 	#shopping .container {
@@ -189,17 +186,12 @@ body {
 	}
 
 	#shopping h2 {
-		/*margin-top: 10px;*/
-
 		font-size: 40px;
 	}
 
 	#shopping .carousel{
 		height: 400px;
 		margin-top: 30px;
-		/*margin-bottom: 150px;*/
-		/*padding-bottom: 100px;*/
-
 	}
 
 	#shop-carousel {
@@ -216,69 +208,60 @@ body {
 	}
 	
 	/* this makes the image bulge out a bit on hover */
-	.carousel .grow {
+	#shopping .carousel .grow {
 		transition: all .2s ease-in-out;
 	}
 
-	.carousel .grow:hover {
+	#shopping .carousel .grow:hover {
 		transform: scale(1.1);
 	}
 
 	/* product image */
-	.carousel-item img {
+	#shopping .carousel-item img {
 		margin: auto;
 	}
 
-	.carousel-indicators {
+	#shopping .carousel-indicators {
 		margin-top: 200px;
 		margin-bottom: 35px;
 		top: 235px;
 	}
 
 	/* title of the product */
-	.carousel-item p {
-		/*font-weight: bold;*/
+	#shopping .carousel-item p {
 		font-size: 13px;
 		font-style: italic;
 		padding-top: 5px;
 	}
 
 	/* Previous button  */
-	.carousel-control-prev {
+	#shopping .carousel-control-prev {
 		width: 50px;
 	}
 
 	/* clickable carousel */
-	.carousel-item a:link, a:visited, a:hover, a:active {
+	#shopping .carousel-item a:link, a:visited, a:hover, a:active {
 		text-decoration: none;
 		color: black;
 	}
-		
-	/*.carousel-inner {
-		margin-bottom: 30px;
-	}*/
 
-	/*.carousel-item a:hover {
-		text-decoration: none;
-	}*/
-
-	.carousel-control-prev-icon {
+	#shopping .carousel-control-prev-icon {
 	  	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575859' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 	}	/* to change color, change the "fill" attribute */
 	/* Next button  */
-	.carousel-control-next {
+	#shopping .carousel-control-next {
 		width: 50px;
 	}
 
-	.carousel-control-next-icon {
+	#shopping .carousel-control-next-icon {
 		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575859' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 	}   /* to change color, change the "fill" attribute */ 
 	
 	/* Changes the color of the indicators */
-	#shop-carousel .carousel-indicators li {
+	#shopping #shop-carousel .carousel-indicators li {
 		background: #c0c0c0;
 	}
-	#shop-carousel .carousel-indicators .active {
+	#shopping #shop-carousel .carousel-indicators .active {
 		background: #333333;
 	}
 	/* End carousel */
@@ -287,28 +270,25 @@ body {
 /* team */
 	#about {
 		margin-top: 50px;
-		/*background-position: center;*/
-		/*background-repeat: no-repeat;*/
-		/*background-size: 60%;*/
 	}
 
+	/* background img */
 	#about .container {
 		background-image: url("../images/ps_neutral.png");
 	}
 
+	/* remove link effects */
 	#about a:hover, #about a:link {
 	    color: black;
 	    text-decoration: none;
-/*	    cursor: pointer;*/
 	}
 
+	/* format our pictures */
 	#about img {
 		width: 150px;
 		height: auto;
 		display: block;
 		margin: auto;
-		/*margin-top: 20px;
-		margin-bottom: 20px;*/
 	}
 
 	#about h2 {
@@ -328,7 +308,6 @@ body {
 	}
 
 	#about p {
-		/*text-align: center;*/
 		font-size: 16px;
 		color: #ff0000;
 		font-weight: bold;
@@ -355,35 +334,6 @@ body {
 
 	#contact {
 		margin-top: 50px;
-	}
-
-/* up arrow button */
-	#upArrow {
-		text-align: right; 
-		margin-right: 50px;
-		display: none;
-		position: fixed; /* Fixed/sticky position */
-	    bottom: 20px; /* Place the button at the bottom of the page */
-	    right: 30px; /* Place the button 30px from the right */
-	    z-index: 99; /* Make sure it does not overlap */
-	    border: none; /* Remove borders */
-	    outline: none; /* Remove outline */
-	    background-color: red; /* Set a background color */
-	    color: white; /* Text color */
-	    cursor: pointer; /* Add a mouse pointer on hover */
-	    padding: 15px; /* Some padding */
-	    border-radius: 10px; /* Rounded corners */
-	}
-
-	#upArrow:hover {
-    	background-color: #555; /* Add a dark-grey background on hover */
-	}
-
-
-	#upArrow img {
-		width: 4%;
-		height: auto;
-		cursor: n-resize;
 	}
 
 
