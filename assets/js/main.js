@@ -50,23 +50,39 @@
 		var twitterHandle = twitterNameData.slice([1],twitterNameData.length); // this is to update the latest tweet. chop off @
 		// console.log(twitterHandle);
 
-		var twitterHandle = "href=\"https://twitter.com/" + twitterHandle + "\"";
+		var twitterHandleString = "href=\"https://twitter.com/" + twitterHandle + "\"";
 		// console.log(twitterHandle);
 
-		var twitterHandle = '<blockquote class="twitter-tweet"><a class="twitter-timeline" ' + twitterHandle;
+		var twitterHandleString = '<blockquote class="twitter-tweet"><a class="twitter-timeline" ' + twitterHandleString;
 		// console.log(twitterHandle);
 
-		var twitterHandle = twitterHandle + ' data-tweet-limit="1" data-chrome="noheader nofooter transparent">Tweets by someone</a></blockquote>';
+		var twitterHandleString = twitterHandleString + ' data-tweet-limit="1" data-chrome="noheader nofooter transparent">Tweets by someone</a></blockquote>';
 		// console.log(twitterHandle);
 
-		$(".twitterHandleUpdate").append(twitterHandle);
-
-		// $(".twitterHandleUpdate").append("blockquote", "https://twitter.com/" + twitterHandle);		
+		$(".twitterHandleUpdate").append(twitterHandleString);
 
 		twttr.widgets.load(document.getElementById("container"));
 
 		$(".twitHandle").html(twitterNameData + " Personality Profile");
 		window.location = "#twitter";
+
+		var userInput;
+	    // Storing users input from text box
+	    userInput = {
+	    	from: twitterHandle,
+	    	count: 100
+	    };
+	    // console.log(userInput);
+
+	   	// ebay AJAX code goes below
+
+
+
+
+
+
+
+	   	// don's AJAX code goes above
 
 	});
 
@@ -99,7 +115,7 @@
 	// }
 
 
-
+/*
 
 
 // Firebase Login Modal
@@ -151,6 +167,8 @@
       var ui = new firebaseui.auth.AuthUI(firebase.auth());
       // The start method will wait until the DOM is loaded.
       ui.start('#firebaseui-auth-container', uiConfig);
+
+*/
 
 // ebay code
 

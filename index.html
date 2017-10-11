@@ -66,7 +66,7 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">  <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#intro">Home</a>
       </li>
       <li class="nav-item">
@@ -81,12 +81,62 @@
       <li class="nav-item">
         <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
       </li>
-      <li class="nav-item">
-                <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button>
-              </li>
+        <button class="btn btn-outline-secondary nav-link" data-toggle="modal" data-target="#loginModal" id="modalBtn">Login</button>  <!-- what is nav-link and is it needed for the button? -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">  <!-- .modal-lg makes the modal bigger than the default size -->
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login with Your ID</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col">
+                      <div class="js-scroll-trigger">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>         
     </ul>
   </div>
 </nav>
+
+
+ <!--      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+        <div class="dropdown-menu"> -->
+                
+
+<!-- <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button> -->
+
+          <!-- modal -->
+          <!-- <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button> -->   <!-- href #login isn't tied to anything -->
+
+
+  <!-- Firebase Google/Twitter/Email Login Display -->
+  <div class="container">
+    <!-- The Modal -->
+    <div id="myFirebaseModal" class="modal">  <!-- okay to change class name -->
+      <!-- Modal content -->
+      <div class="modal-content" id="firebase-login-container">
+        <span class="close">x close</span>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -101,7 +151,7 @@
 
 
       <div class="container">
-  	<h1>Twitter Watson Personality Insights</h1>
+    <h1>Twitter Watson Personality Insights</h1>
       <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
       <!-- </div> -->
        
@@ -207,38 +257,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-        <!--   <button type="button" class="btn btn-outline-success btn-block" id="modalBtn">Click to View Sunburst Profile</button> -->
-          <!-- The Modal -->
-          <!-- <div id="myModal" class="modal"> -->
-            <!-- Modal content -->
-            <!-- <div class="modal-content">
-              <span class="close">x close</span>
-              <img src="assets/images/sunburst_sample.png" />
-            </div>
-          </div> -->
-
-  <!-- modal -->
-  <!-- <div class="container"> -->
-
-    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
-
-
-  <!-- Firebase Google/Twitter/Email Login Display -->
-  <div class="container">
-    <!-- The Modal -->
-    <div id="myFirebaseModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content" id="firebase-login-container">
-        <span class="close">x close</span>
-        <div id="firebaseui-auth-container"></div>
       </div>
     </div>
   </div>
