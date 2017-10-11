@@ -48,7 +48,7 @@
 		// console.log(twitterNameData);
 
 		var twitterHandle = twitterNameData.slice([1],twitterNameData.length); // this is to update the latest tweet. chop off @
-		// console.log(twitterHandle);
+		console.log(twitterHandle);
 
 		var twitterHandleString = "href=\"https://twitter.com/" + twitterHandle + "\"";
 		// console.log(twitterHandle);
@@ -78,7 +78,55 @@
 
 	// start of ebay AJAX code
 
-		var ebayKeyword = watsonKeyword;  // option: define 'watsonKeyword' from within the personality profile 
+
+	// temperate literal
+	    $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
+	        console.log(data);
+		    });
+		});
+
+		$.get('https://twitter-watson-insights-demo.herokuapp.com/', function(data) {
+
+		console.log(data);
+
+		var arr = data.personality;
+	    console.log(arr);
+
+        function getMax(arr, prop) {
+            var max;
+
+            for (var i=0 ; i<arr.length ; i++) {
+                if (!max || parseFloat(arr[i][prop]) > parseFloat(max[prop]))
+                    max = arr[i];
+                console.log("hi");
+            }
+            return max;
+        }
+
+        var personality = getMax(arr, "percentile");
+        console.log(personality); 
+
+        if (personality.name === "Openness") {
+            var ebayKeyword = "Paint-set,utility-knife,philosophy-book,abstract-painting,fixed-gear-bike";
+        } else if (personality.name === "Conscientiousness") {
+            var ebayKeyword = "calendar,kindle,smart-watch,exercise-equipment,shoe-organizer";
+        } else if (personality.name === "Extraversion") {
+            var ebayKeyword = "Artsy-Shot-Glasses,morph-suit,suspenders,spike-ball,backpacking";
+        } else if (personality.name === "Agreeableness") {
+            var ebayKeyword = "greeting-cards,stationery,home-decor,sunglasses,wine-bottle-opener";
+        } else if (personality.name === "Emotional Range") {
+            var ebayKeyword = "Stress-Ball,fidget-spinner,back-massager,candles,hammock";
+        }
+    	// var noSpace = ebayKeyword.replace(/\s/g,'');
+    	// console.log(noSpace);
+
+    	console.log(1, ebayKeyword);
+
+
+
+
+
+		// var ebayKeyword = watsonKeyword;  // option: define 'watsonKeyword' from within the personality profile 
 
 		var results = 24; // to increase, the carousel structure will need to be updated
 
@@ -124,8 +172,10 @@
 					$("#productImg" + i).attr("src", productImg);
 					$(".productTitle" + i).html(productTitle);
 					$("#productUrl" + i).attr("href", productUrl);
+
 				}		
 	        });
+
 		};
 
 	// end of ebay AJAX code
