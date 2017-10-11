@@ -18,6 +18,7 @@
   "homepage": "https://github.com/UCLA-Hackers/twitter-watson-personality-insights#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "smoothscroll-polyfill": "^0.4.0",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^2.39.2"
   },

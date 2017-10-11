@@ -1,5 +1,7 @@
 /** {
-	border: red 1px solid;
+	border-color: #ff0000; 
+	border-width: 1px; 
+	border-style: solid;
 }*/
 
 body {
@@ -16,6 +18,23 @@ body {
 }*/
 
 /* header */
+
+	#intro {
+		padding-bottom: 113px;
+	}
+
+	/* this isn't working */
+	#intro nav {   
+		position: sticky;
+		position: -webkit-sticky;
+		top: 0; /* required */
+	}
+
+
+	#menu .navbar-nav {
+		text-align: right;
+		padding-right: 5px;
+	}
 
 	.jumbotron {
 		position: relative;
@@ -67,40 +86,7 @@ body {
 		cursor: pointer;
 	}
 
-	#mainNav .navbar-toggler {
-		font-size: 12px;
-		right: 0;
-		padding: 13px;
-		text-transform: uppercase;
-		color: white;
-		border: 0;
-		background-color: #fed136;
-		font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		text-transform: uppercase;
-	}
-
-	#mainNav .navbar-brand {
-		color: #fed136;
-		font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; 
-	}
-
-	#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-			color: #fec503; 
-	}
-
-	#mainNav .navbar-nav .nav-item .nav-link {
-		font-size: 90%;
-		font-weight: 400;
-		padding: 0.75em 0;
-		letter-spacing: 1px;
-		color: white;
-		font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		text-transform: uppercase; 
-	}
-
-	#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-		color: red; 
-	}
+	
 
 
 /* twitter */
@@ -108,13 +94,19 @@ body {
 
 	/* adjusting twitter logo*/
 	#twitter {
-		margin-top: 170px;
+		margin-top: 50px;
 		/*background-image: url("../images/Twitterbird.png");*/
 		/*background-image: url("../images/IBM_Watson_Logo_2017.png");
 		background-position: center;
 		background-repeat: no-repeat;*/
-
 	}
+
+	#twitter .container {
+		background-image: url("../images/whitediamond.png");
+		padding-top: 30px;
+		padding-bottom: 30px; 
+	}
+
 
 	#twitter h2 {
 /*		letter-spacing: 2px;*/
@@ -167,61 +159,32 @@ body {
 
 	}
 
+	#twitter #personalityProfile {
+		border-left: 1px solid #000000;
+	}
+
 	#modalBtn {
 		margin-top: 20px;
 	}
 
-	/* The Modal (background) */
-	.modal {
-	    display: none; /* Hidden by default */
-	    position: fixed; /* Stay in place */
-	    z-index: 1; /* Sit on top */
-	    left: 0;
-	    top: 0;
-	    width: 100%; /* Full width */
-	    height: 100%; /* Full height */
-	    overflow: auto; /* Enable scroll if needed */
-	    background-color: rgb(0,0,0); /* Fallback color */
-	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	}
-
-	/* Modal Content/Box */
-	.modal-content {
-	    background-color: #fefefe;
-	    margin: 15% auto; /* 15% from the top and centered */
-	    padding: 20px;
-	    border: 1px solid #888;
-	    width: 80%; /* Could be more or less, depending on screen size */
-	}
-
-	/* The Close Button */
-	.close {
-	    color: #000000;
-	    float: right;
-	    font-size: 20px;
-	    font-weight: bold;
-	    width: 70px;
-	}
-
-	.close:hover,
-	.close:focus {
-	    color: black;
-	    text-decoration: none;
-	    cursor: pointer;
+	.modal img {
+		width: 100%;
+		height: auto;
 	}
 
 /* carousel */
 	#shopping {
 		margin-top: 50px;
-		height: 800px;
-		b/*ackground-image: url("../images/640px-EBay_logo-30.png");
+		height: 700px;
+		/*background-image: url("../images/640px-EBay_logo-30.png");
 		background-position: center;
 		background-repeat: no-repeat;
-		background-si*/ze: 90%;
+		background-size: 90%;*/
 	}
 
 	#shopping .container {
-		background-color: #f4f4f4;
+		background-image: url("../images/foggy_birds.png");
+		padding-bottom: 70px;
 	}
 
 	#shopping img {
@@ -237,7 +200,7 @@ body {
 
 	#shopping .carousel{
 		height: 400px;
-		margin-top: 150px;
+		margin-top: 30px;
 		/*margin-bottom: 150px;*/
 		/*padding-bottom: 100px;*/
 
@@ -245,7 +208,6 @@ body {
 
 	#shop-carousel {
 		padding: 0 10px 30px 10px;
-		margin-top: 30px;
 	}
 
 	/* Control buttons  */
@@ -257,22 +219,32 @@ body {
 		margin-top: 30px;
 	}
 	
+	/* this makes the image bulge out a bit on hover */
+	.carousel .grow {
+		transition: all .2s ease-in-out;
+	}
+
+	.carousel .grow:hover {
+		transform: scale(1.1);
+	}
+
 	/* product image */
 	.carousel-item img {
-		max-width: 200px;
-		max-height:200px;
+		margin: auto;
 	}
 
 	.carousel-indicators {
 		margin-top: 200px;
 		margin-bottom: 35px;
+		top: 235px;
 	}
 
 	/* title of the product */
-	.carousel-item .productTitle {
+	.carousel-item p {
 		/*font-weight: bold;*/
-		font-size: 20px;
+		font-size: 13px;
 		font-style: italic;
+		padding-top: 5px;
 	}
 
 	/* Previous button  */
@@ -316,9 +288,22 @@ body {
 	/* End carousel */
 
 
-	/* team */
+/* team */
 	#about {
-		margin-top: 250px;
+		margin-top: 50px;
+		/*background-position: center;*/
+		/*background-repeat: no-repeat;*/
+		/*background-size: 60%;*/
+	}
+
+	#about .container {
+		background-image: url("../images/ps_neutral.png");
+	}
+
+	#about a:hover, #about a:link {
+	    color: black;
+	    text-decoration: none;
+/*	    cursor: pointer;*/
 	}
 
 	#about img {
@@ -332,7 +317,13 @@ body {
 
 	#about h2 {
 		font-size: 40px;
+		margin-top: 20px;
 		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	#about h3 {
+		font-size: 30px;
 	}
 
 	#about .rounded-circle {
@@ -341,8 +332,8 @@ body {
 	}
 
 	#about p {
-		text-align: center;
-		font-size: 20px;
+		/*text-align: center;*/
+		font-size: 16px;
 		color: #ff0000;
 		font-weight: bold;
 	}
@@ -355,12 +346,39 @@ body {
 		margin-bottom: 15px;
 	}
 
-	#about {
-		background-image: url("../images/Supreme-logo-30.png");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: 60%;
+	#about .profile {
+		margin-top: auto;
+		margin-bottom: auto; 
 	}
+
+/* contact */
+
+	#contact .container {
+		background-image: url("../images/gplaypattern.png");
+	}
+
+	#contact {
+		margin-top: 50px;
+	}
+
+/* up arrow button */
+	#upArrow {
+		text-align: right; 
+		margin-right: 50px;
+	}
+
+	#upArrow img {
+		width: 4%;
+		height: auto;
+		cursor: n-resize;
+	}
+
+
+
+
+
+
+
 
 	/**
 	  MEDIA QUERIES
