@@ -196,7 +196,7 @@
 		// scroll back home using the arrow up button
 		document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
         	e.preventDefault();
-        	document.querySelector("#intro").scrollIntoView({ behavior: "smooth" });
+        	document.querySelector("#pageTop").scrollIntoView({ behavior: "smooth" });
 		});
 		// scroll down to twitter
 		document.querySelector("#scrollToTwitter").addEventListener("click", function(e) {
@@ -225,7 +225,7 @@
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 100) {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         document.getElementById("upArrow").style.display = "block";
     } else {
         document.getElementById("upArrow").style.display = "none";
