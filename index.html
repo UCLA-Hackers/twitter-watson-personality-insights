@@ -36,7 +36,11 @@
   <!-- this twitter js file may not be needed -->
 
 	<!-- LINK TO FIREBASE GOES HERE -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    
+  <!-- Firebase Style Sheet for Login -->
+   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
+   <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
 
     <!-- Added Moment JS -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
@@ -54,6 +58,7 @@
 
   <!-- navigation -->
   <div id="menu">
+
     <!-- <div class="pos-f-t"> -->
       <!-- <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-light p-2"> -->
@@ -99,6 +104,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
       </li>
+      <li class="nav-item">
+                <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button>
+              </li>
     </ul>
   </div>
 </nav>
@@ -112,6 +120,7 @@
         </button>
       </nav> -->
 
+
   </div>
 
   <!-- video header -->
@@ -120,6 +129,13 @@
       <video id="video-background" preload muted autoplay loop>
         <source src="assets/videos/708213662.mp4" type="video/mp4">
       </video>
+
+
+      <!-- <div class="container"> -->
+  		<h1>Twitter Watson Personality Insights</h1>
+      <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
+      <!-- </div> -->
+
       <div class="container">
         <h1>Twitter Watson Personality Insights</h1>
         <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggest gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's just that easy. Really.</p>
@@ -249,6 +265,17 @@
     <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
 
 
+  <!-- Firebase Google/Twitter/Email Login Display -->
+  <div class="container">
+    <!-- The Modal -->
+    <div id="myFirebaseModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content" id="firebase-login-container">
+        <span class="close">x close</span>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+  </div>
 
 
 </section>

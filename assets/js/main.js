@@ -7,6 +7,17 @@
 	  });
 	});  // i should place this closing parens at the very bottom
 
+ // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBESuRC2fLY0POQi3dFKbDhsWgCGbWrrng",
+        authDomain: "fir-example-2871d.firebaseapp.com",
+        databaseURL: "https://fir-example-2871d.firebaseio.com",
+        projectId: "fir-example-2871d",
+        storageBucket: "fir-example-2871d.appspot.com",
+        messagingSenderId: "51091543547"
+      };
+      firebase.initializeApp(config);
+
 // widgets.js script needed for displaying twitter feeds
 	window.twttr = (function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0],
@@ -91,6 +102,55 @@
 
 
 
+// Firebase Login Modal
+	// Get the modal
+	var firebaseModal = document.getElementById('myFirebaseModal');
+
+	// Get the button that opens the modal
+	var logMeIn = document.getElementById("log-in");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on the button, open the modal 
+	logMeIn.onclick = function() {
+	    firebaseModal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    firebaseModal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        firebaseModal.style.display = "none";
+	    }
+	}
+
+      // FirebaseUI config AND Login functionality
+      var uiConfig = {
+        signInSuccessUrl: 'login.html',
+        signInOptions: [
+        
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+
+        
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
 
 // ebay code
 
