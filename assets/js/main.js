@@ -18,7 +18,7 @@
       };
       firebase.initializeApp(config);
 
-// widgets.js script needed for displaying twitter feeds
+// widgets.js script needed for displaying twitter feeds on html
 	window.twttr = (function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0],
 	    t = window.twttr || {};
@@ -38,7 +38,7 @@
 
 
 // pull twitter handle
-	$("form").submit(function(event){
+	$("#twitterInput").submit(function(event){
 		
 		$(".twitterHandleUpdate").empty();
 
@@ -74,59 +74,74 @@
 	    };
 	    // console.log(userInput);
 
-	   	// ebay AJAX code goes below
 
 
+	// start of ebay AJAX code
 
+		var ebayKeyword = watsonKeyword;  // option: define 'watsonKeyword' from within the personality profile 
 
+		var results = 24; // to increase, the carousel structure will need to be updated
 
+		var url = "http://svcs.ebay.com/services/search/FindingService/v1?";
+		url += "OPERATION-NAME=findItemsByKeywords&";
+		url += "SERVICE-VERSION=1.13.0&";
+		url += "SECURITY-APPNAME=DonovanL-Personal-PRD-c5d74fc8f-6fb03d7d&";
+		url += "GLOBAL-ID=EBAY-US&";
+		url += "RESPONSE-DATA-FORMAT=JSON&";
+		url += "REST-PAYLOAD&";
+		url += "keywords=(" + ebayKeyword + ")&";
+		// url += "outputSelector(0)=PictureURLLarge&";  // this doesn't work :(
+		url += "paginationInput.entriesPerPage=" + results;
 
+		console.log(url);
 
-	   	// don's AJAX code goes above
+		displayEbayInfo();
+
+		function displayEbayInfo() {
+	        	       
+	        $.ajax({
+				url: url,
+				method: "GET",
+				dataType: "jsonp"
+	        }).done(function(data) {
+				console.log(data);
+				
+				var commonObj = data.findItemsByKeywordsResponse["0"].searchResult["0"];
+
+				var numItems = commonObj["@count"];
+				console.log(numItems); // this should return the number of items pulled
+				
+				for (i = 0; i < numItems; i++) {
+					var productImg = commonObj.item[i].galleryURL["0"];
+					// console.log(productImg); //this should return the image
+
+					var productTitle = commonObj.item[i].title["0"];
+					// console.log(productTitle); //this should return the image
+
+					var productUrl = commonObj.item[i].viewItemURL["0"];
+					// console.log(productUrl); //this should return the item url
+
+					$("#productImg" + i).attr("src", productImg);
+					$(".productTitle" + i).html(productTitle);
+					$("#productUrl" + i).attr("href", productUrl);
+				}		
+	        });
+		};
+
+	// end of ebay AJAX code
 
 	});
 
 
-// modal
-	// Get the modal
-	// var modal = document.getElementById('myModal');
-
-	// Get the button that opens the modal
-	// var btn = document.getElementById("modalBtn");
-
-	// Get the <span> element that closes the modal
-	// var span = document.getElementsByClassName("close")[0];
-
-	// When the user clicks on the button, open the modal 
-	// btn.onclick = function() {
-	//     modal.style.display = "block";
-	// }
-
-	// When the user clicks on <span> (x), close the modal
-	// span.onclick = function() {
-	//     modal.style.display = "none";
-	// }
-
-	// When the user clicks anywhere outside of the modal, close it
-	// window.onclick = function(event) {
-	//     if (event.target == modal) {
-	//         modal.style.display = "none";
-	//     }
-	// }
-
-
-/*
-
-
 // Firebase Login Modal
 	// Get the modal
-	var firebaseModal = document.getElementById('myFirebaseModal');
+	// var firebaseModal = document.getElementById('myFirebaseModal');
 
 	// Get the button that opens the modal
 	var logMeIn = document.getElementById("log-in");
 
 	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
+	var span = document.getElementsByClassName("close");
 
 	// When the user clicks on the button, open the modal 
 	logMeIn.onclick = function() {
@@ -137,14 +152,14 @@
 	span.onclick = function() {
 	    firebaseModal.style.display = "none";
 	}
-
+/*
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        firebaseModal.style.display = "none";
 	    }
 	}
-
+*/
       // FirebaseUI config AND Login functionality
       var uiConfig = {
         signInSuccessUrl: 'login.html',
@@ -168,81 +183,15 @@
       // The start method will wait until the DOM is loaded.
       ui.start('#firebaseui-auth-container', uiConfig);
 
-*/
-
-// ebay code
-
-	var ebayKeyword = "dildo"; 
-	var results = 24; 
-
-	var url = "http://svcs.ebay.com/services/search/FindingService/v1?";
-	url += "OPERATION-NAME=findItemsByKeywords&";
-	url += "SERVICE-VERSION=1.13.0&";
-	url += "SECURITY-APPNAME=DonovanL-Personal-PRD-c5d74fc8f-6fb03d7d&";
-	url += "GLOBAL-ID=EBAY-US&";
-	url += "RESPONSE-DATA-FORMAT=JSON&";
-	url += "REST-PAYLOAD&";
-	url += "keywords=(" + ebayKeyword + ")&";
-	// url += "outputSelector(0)=PictureURLLarge&";  // this doesn't work :(
-	url += "paginationInput.entriesPerPage=" + results;
-
-	console.log(url);
-
-	function setup() {
-		loadJSON(url, gotData, "jsonp");  // jsonp addresses the issue of no 'access-control-allow-origin' header
-	}
-
-	function gotData(data) {
-		console.log(data);
-
-		var commonObj = data.findItemsByKeywordsResponse["0"].searchResult["0"];
-
-		var numItems = commonObj["@count"];
-		console.log(numItems); // this should return the number of items pulled
-		
-		for (i = 0; i < numItems; i++) {
-			var productImg = commonObj.item[i].galleryURL["0"];
-			console.log(productImg); //this should return the image
-
-			var productTitle = commonObj.item[i].title["0"];
-			console.log(productTitle); //this should return the image
-
-			var productUrl = commonObj.item[i].viewItemURL["0"];
-			console.log(productUrl); //this should return the item url
-
-			$("#productImg" + i).attr("src", productImg);
-			$(".productTitle" + i).html(productTitle);
-			$("#productUrl" + i).attr("href", productUrl);
 
 
-
-			// $("#row1").append("<div class='col-sm-3 text-center'><a href='' target='_blank' id='productUrl4'><img class='rounded d-block img-fluid' src='' id='productImg4' /><p class='productTitle4'>Coming soon</p></a></div>");
-
-
-
-		}
-
-		// var itemImage = commonObj.item["0"].galleryURL["0"];
-		// console.log(itemImage); //this should return the image
-
-		// var itemTitle = commonObj.item["0"].title["0"];
-		// console.log(itemTitle); //this should return the image
-
-		// var itemURL = commonObj.item["0"].viewItemURL["0"];
-		// console.log(itemURL); //this should return the item url
-
-	
-		// $("<p />").appendTo("productTitle")
-
-
-	}
-
+// modal
 
 	// dynamically changes the height of the modal when the modal is open
 	$("#sunburstModal").modal('handleUpdate');  
 
 
-	// smooth scrolling
+// smooth scrolling
 	window.addEventListener("load", function() {
 		// scroll back home using the arrow up button
 		document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
@@ -270,6 +219,18 @@
         	document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
 		});
 	});
+
+// When the user scrolls down 20px from the top of the document, show the button
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 100) {
+        document.getElementById("upArrow").style.display = "block";
+    } else {
+        document.getElementById("upArrow").style.display = "none";
+    }
+}
 
 
 
