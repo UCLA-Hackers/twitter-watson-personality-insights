@@ -1,8 +1,6 @@
-/** {
-	border-color: #ff0000; 
-	border-width: 1px; 
-	border-style: solid;
-}*/
+* {
+	border: 1px solid red;
+}
 
 body {
 	font-family: 'Open Sans', sans-serif;
