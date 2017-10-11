@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
 	<title>Twitter Based Personality Insights Via Watson</title>
 
@@ -36,13 +36,19 @@
   <!-- this twitter js file may not be needed -->
 
 	<!-- LINK TO FIREBASE GOES HERE -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    
+  <!-- Firebase Style Sheet for Login -->
+   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
+   <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
 
     <!-- Added Moment JS -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
 
 	<!-- link to D3 -->
 	<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+
+
 
 </head>
 <body>
@@ -52,39 +58,88 @@
 
   <!-- navigation -->
   <div id="menu">
-  	<nav class="navbar navbar-toggleable-md navbar-light">
 
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
+      
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">  <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#intro">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
+      </li>
+        <button class="btn btn-outline-secondary nav-link" data-toggle="modal" data-target="#loginModal" id="modalBtn">Login</button>  <!-- what is nav-link and is it needed for the button? -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">  <!-- .modal-lg makes the modal bigger than the default size -->
+            <div class="modal-content">
 
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fa fa-bars"></i>
-          </button>
-
-
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#twitter">Twitter Feed</a>
-              </li>
-<!--               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#personality">Login</a> -->
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#shopping">Shopping</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">Team</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-              </li>
-            </ul>
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login with Your ID</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col">
+                      <div class="js-scroll-trigger">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-    </nav>
+      </li>         
+    </ul>
+  </div>
+</nav>
+
+
+ <!--      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+        <div class="dropdown-menu"> -->
+                
+
+<!-- <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button> -->
+
+          <!-- modal -->
+          <!-- <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button> -->   <!-- href #login isn't tied to anything -->
+
+
+  <!-- Firebase Google/Twitter/Email Login Display -->
+  <div class="container">
+    <!-- The Modal -->
+    <div id="myFirebaseModal" class="modal">  <!-- okay to change class name -->
+      <!-- Modal content -->
+      <div class="modal-content" id="firebase-login-container">
+        <span class="close">x close</span>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+  </div>
+
+
+
   </div>
 
   <!-- video header -->
@@ -93,23 +148,27 @@
       <video id="video-background" preload muted autoplay loop>
         <source src="assets/videos/708213662.mp4" type="video/mp4">
       </video>
-      <!-- <div class="container"> -->
-  		<h1>Twitter Watson Personality Insights</h1>
-      <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggest gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's just that easy. Really.</p>
-      <!-- </div> -->
+
+
       <div class="container">
+    <h1>Twitter Watson Personality Insights</h1>
+      <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
+      <!-- </div> -->
+       
+
         <form>
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-3 mb-3">
-            <label for="twitterName" class="sr-only">twitter name</label>
-            <input type="text" class="form-control" id="twitterName" placeholder="@twitter_name_example" pattern="^@[A-Za-z0-9]+$"required>
-            <!-- the + means one or more times and $ is the end of string anchor -->
-          </div>
-          <div class="col-md-3 mb-3">
-            <button class="btn btn-social btn-twitter" type="submit">
-            <span class="fa fa-twitter"></span>Click to Get Personality
-            </button>
-          </div>
+          <div class="row justify-content-center">
+            <div class="col-3">
+              <label for="twitterName" class="sr-only">twitter name</label>
+              <input type="text" class="form-control" id="twitterName" placeholder="@twitter-name-example" pattern="^@[A-Za-z0-9]+$"required />
+              <!-- the + means one or more times and $ is the end of string anchor -->
+            </div>
+            <div class="col-3">
+              <button class="btn btn-twitter" type="submit">
+                <span class="fa fa-twitter"></span> Click to Get Personality
+              </button>
+            </div>
+          </div>  
         </form>
       </div>
     </div>
@@ -117,37 +176,33 @@
 </section>  <!-- this closes the entire header section -->
 
 <!-- twitter feed -->
+
+
 <section id="twitter">
+
 
   <!-- <img id="twitBg" src="assets/images/Twitterbird.png"> -->
   <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h2 class="twitHandle">Personality Profile</h2>
-          </div>
-        </div>
-  </div>
-
-
-  <!-- twitter profile pic -->
-  <div id="twitImg">
-    <img class="rounded-circle" src="https://pbs.twimg.com/profile_images/914329372714323971/Xd8pGF7H_400x400.jpg">  <!-- here we need to dynamically update the href -->
-  <!-- dynamically adds the twitter handle -->
-  </div>
-
-  <!-- latest tweet and watson profile -->
-  <div id="latestTweetTitle">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <p>Latest Tweet</p>
-        </div>
-        <div class="col-md-6">
-          <p>Watson Profile</p>
-        </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="twitHandle">Personality Profile</h2>
       </div>
-      <div class="row">
-        <div class="col-md-6">
+    </div>
+
+
+
+    <!-- twitter profile pic -->
+    <div id="twitImg">
+      <img class="rounded-circle" src="https://pbs.twimg.com/profile_images/914329372714323971/Xd8pGF7H_400x400.jpg" />  <!-- here we need to dynamically update the href -->
+    <!-- dynamically adds the twitter handle -->
+    </div>
+
+    <!-- latest tweet and watson profile -->
+    <div id="latestTweetTitle">
+
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <p>Latest Tweet</p>
           <div id="latestTweet">
             <div class="twitterHandleUpdate">
         <!--     <blockquote class="twitter-tweet">
@@ -159,7 +214,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6" id="personalityProfile">
+        <div class="col-6" id="personalityProfile">
+          <p>Watson Profile</p>
           <dl>
             <li>Likely to indulge in spur of the moment purchases</li>
             <li>Likely to be influenced by family when making product purchases</li>
@@ -170,44 +226,55 @@
             <li>Likely to have a gym membership</li>
             <li>Likely to like outdoor activities</li>
           </dl>
+
+          <!-- button triggering modal -->
+          <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button>
+
+          <!-- modal -->
+          <div class="modal fade" id="sunburstModal" tabindex="-1" role="dialog" aria-labelledby="sunburstModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">  <!-- .modal-lg makes the modal bigger than the default size -->
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="sunburstModalLabel">Sunburst Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col">
+                        <img src="assets/images/sunburst_sample.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- modal -->
-  <div class="container">
 
-    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
-
-    <button type="button" class="btn btn-success btn-lg btn-block" id="modalBtn">Click to View Sunburst Profile</button>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">x close</span>
-        <img src="assets/images/sunburst_sample.png">
-      </div>
-    </div>
-  </div>
-
-
-</section>
-
-
-<!-- personality insight -->
-<section id="personality">
-  
 </section>
 
 <!-- shopping carousel -->
+
+
 <section id="shopping">
-  
+
+
   <!-- carousel -->
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-      <img src="assets/images/EBay_logo.png">
+      <img src="assets/images/EBay_logo.png" />
       <h2>Gift Recommendations</h2>
       </div>
     </div>
@@ -225,53 +292,178 @@
       <!-- carousel slides / items -->
       <div class="carousel-inner" role="listbox">
       
-        <!-- item 1 -->
-        <div class="carousel-item active">
-          <a href="https://www.amazon.com/SVAKOM-Waterproof-Vibrating-Massager-Dual-Motor/dp/B06XT1MJ2T/" target="_blank">
-          <div class="row">
-            <div class="col-sm-3">
-              <img class="rounded d-block img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/515EiUpWA9L._SX425_.jpg">
-            </div>
-            <div class="col-sm-9 d-flex flex-column align-self-center">
-              <p class="productTitle">[product title]SVAKOM Waterproof Vibrating Male Anal Plug Massager for Men and Dual-Motor Vibrator for Women</p>
-              <br>
-              <p class="productDesc">[product description]This product is a powerful and luxurious massager especially designed for couples. It not only can be used for male prostate, perineum and anal massager but also can be used as a female g-spot&clitoris stimulator. It is made of durable medical-grade silicone, odorless and safe to your private. With strong DUAL motors and 35 speed vibrating frequency, it will bring you maximal stimulation both internally and externally to reach climax experience.</p>
-            </div>
-          </div>
-          </a>
-        </div>
-        <!-- item 2 -->
-        <div class="carousel-item">
-          <a href="https://www.amazon.com/VIPERTEK-Hinged-Double-Professional-Handcuffs/dp/B018RO3F8Y/" target="_blank">
-          <div class="row">
-            <div class="col-sm-3 text-center">
-              <img class="rounded d-block img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/41%2BUnJnCYIL._SY355_.jpg">
-            </div>
-            <div class="col-sm-9 d-flex flex-column align-self-center">
-              <p class="productTitle">[product title]VIPERTEK Heavy Duty Hinged Double Lock Steel Police Edition Professional Grade Handcuffs (Black)</p>
-              <br>
-              <p class="productDesc">[product description]Sturdy and dependable triple hinged, double locking steel hand cuffs. The double locking feature allows you to lock the cuffs down to prevent the detainee from closing the cuffs too tight on the wrist.</p>
-            </div>
-          </div>
-          </a>
-        </div>
-        <!-- item 3 -->
-        <div class="carousel-item"> 
-          <a href="https://www.amazon.com/Husky-Bio-Clenz-Upholstry-Cleaner-Mattress/dp/B01N2QM3PN/" target="_blank">
-          <div class="row">
-            <div class="col-sm-3 text-center">
-              <img class="rounded d-block img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/81Bktb0OheL._SL1500_.jpg">
 
+    
+        <div class="carousel-item active">
+          <!-- page 1 -->
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl0">
+              <img class="rounded d-block img-fluid" src="" id="productImg0" />
+              <p class="productTitle0">Coming soon</p>
+              </a>
             </div>
-            <div class="col-sm-9 d-flex flex-column align-self-center">
-              <p class="productTitle">[product title]Husky Bio-Clenz Upholstry Cleaner, Blood Stain Remover, Mattress Stain Remover, Carpet Cleaner Spray</p>
-              <br>
-              <p class="productDesc">[product description]Use Husky Stain Remover as a carpet cleaner spray and upholstery cleaner, great for removing ink stains and blood stains. Use as a Carpet cleaner pet spray, and mattress stain remover. Safe for 5th Generation Carpets and any water safe fabric, and includes a pleasant, long-lasting peach/kiwi fragrance to leave the area with fresh scent. Always pretest for color fastness in an inconspicuous area before applying cleaning solution. Test with full strength product and allow to remain for at least three minutes. If color loss or fading occurs, do not proceed. For best results always spot clean as soon as possible. Spray soiled area with a light mist, agitate with the blunt end of carpet brush, and blot dry with a clean, white towel. If stain is not removed, repeat prior step. Always rinse thoroughly and blot dry between steps and as a final step. Clean with the power of industrial cleaners, but safe enough for your home. Husky upholstery fabric cleaner will pull stains from car seats and couches.</p>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl1">
+              <img class="rounded d-block img-fluid" src="" id="productImg1" />
+              <p class="productTitle1">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl2">
+              <img class="rounded d-block img-fluid" src="" id="productImg2" />
+              <p class="productTitle2">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl3">
+              <img class="rounded d-block img-fluid" src="" id="productImg3" />
+              <p class="productTitle3">Coming soon</p>
+              </a>
             </div>
           </div>
-          </a>
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl4">
+              <img class="rounded d-block img-fluid" src="" id="productImg4" />
+              <p class="productTitle4">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl5">
+              <img class="rounded d-block img-fluid" src="" id="productImg5" />
+              <p class="productTitle5">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl6">
+              <img class="rounded d-block img-fluid" src="" id="productImg6" />
+              <p class="productTitle6">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl7">
+              <img class="rounded d-block img-fluid" src="" id="productImg7" />
+              <p class="productTitle7">Coming soon</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+          <!-- page 2 -->
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl8">
+              <img class="rounded d-block img-fluid" src="" id="productImg8" />
+              <p class="productTitle8">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl9">
+              <img class="rounded d-block img-fluid" src="" id="productImg9" />
+              <p class="productTitle9">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl10">
+              <img class="rounded d-block img-fluid" src="" id="productImg10" />
+              <p class="productTitle10">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl11">
+              <img class="rounded d-block img-fluid" src="" id="productImg11" />
+              <p class="productTitle11">Coming soon</p>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl12">
+              <img class="rounded d-block img-fluid" src="" id="productImg12" />
+              <p class="productTitle12">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl13">
+              <img class="rounded d-block img-fluid" src="" id="productImg13" />
+              <p class="productTitle13">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl14">
+              <img class="rounded d-block img-fluid" src="" id="productImg14" />
+              <p class="productTitle14">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl15">
+              <img class="rounded d-block img-fluid" src="" id="productImg15" />
+              <p class="productTitle15">Coming soon</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+          <!-- page 3 -->
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl16">
+              <img class="rounded d-block img-fluid" src="" id="productImg16" />
+              <p class="productTitle16">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl17">
+              <img class="rounded d-block img-fluid" src="" id="productImg17" />
+              <p class="productTitle17">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl18">
+              <img class="rounded d-block img-fluid" src="" id="productImg18" />
+              <p class="productTitle18">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl19">
+              <img class="rounded d-block img-fluid" src="" id="productImg19" />
+              <p class="productTitle19">Coming soon</p>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl20">
+              <img class="rounded d-block img-fluid" src="" id="productImg20" />
+              <p class="productTitle20">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl21">
+              <img class="rounded d-block img-fluid" src="" id="productImg21" />
+              <p class="productTitle21">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl22">
+              <img class="rounded d-block img-fluid" src="" id="productImg22" />
+              <p class="productTitle22">Coming soon</p>
+              </a>
+            </div>
+            <div class="col-md-3 text-center grow">
+              <a href="" target="_blank" id="productUrl23">
+              <img class="rounded d-block img-fluid" src="" id="productImg23" />
+              <p class="productTitle23">Coming soon</p>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+
 
       <a class="carousel-control-prev" href="#shop-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -286,76 +478,107 @@
 </section>
 
 <!-- team members -->
+
 <section id="about">
+
+
+
   <div class="container">
     <div class="row">
+      <div class="col-md-12" id="headline">
+        <h2>Who We Are</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi eum voluptatem deserunt harum ab corporis libero consequuntur incidunt nobis dolorem deleniti, laborum sit a tempore aperiam, quas omnis cumque est aliquid quis delectus alias quasi maiores! Soluta ea explicabo doloremque neque tempore non, perspiciatis sunt dolor quam unde? Saepe, commodi.</p>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12 text-center">
-        <h2>Team Keith</h2>
+        <h2>Meet The Team</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <a href="https://github.com/ykeanu" target="_blank">
-        <img class="rounded-circle" src="assets/images/izzy.jpeg">
-        </a>
+    <a href="https://github.com/ykeanu" target="_blank">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <img class="rounded-circle" src="assets/images/izzy.jpeg" />
       </div>
-      <div class="col-md-4">
-        <a href="https://github.com/dlowkeen" target="_blank">
-        <img class="rounded-circle" src="assets/images/donovan.jpeg">
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="https://github.com/mikeyamato" target="_blank">
-        <img class="rounded-circle" src="assets/images/mike.jpeg">
-        </a>
+      <div class="col-5 profile">
+        <h3>Izzy Hernandez</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
       </div>
     </div>
-    <div class="row" id="name">
-      <div class="col-md-4">
-        <p>Izzy Hernandez</p>
+    </a>
+    <a href="https://github.com/dlowkeen" target="_blank">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <img class="rounded-circle" src="assets/images/donovan.jpeg" />
       </div>
-      <div class="col-md-4">
-        <p>Dononvan Lowkeen</p>
-      </div>
-      <div class="col-md-4">
-        <p>Mike Yamato</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div id="personalityProfile">
-          <dl>
-          <li>Likely to eat BBQ</li>
-        </dl>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div id="personalityProfile">
-          <dl>
-          <li>Likely to surf</li>
-        </dl>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div id="personalityProfile">
-        <dl>
-          <li>Likely to be on COPS</li>
-        </dl>
+      <div class="col-5 profile">
+        <h3>Dononvan Lowkeen</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
       </div>
     </div>
+    </a>
+    <a href="https://github.com/mikeyamato" target="_blank">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <img class="rounded-circle" src="assets/images/mike.jpeg" />
+      </div>
+      <div class="col-5 profile">
+        <h3>Mike Yamato</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
+      </div>
+    </div>
+    </a>
   </div>
-
-<div id="results"></div>
-
 </section>
 
 <!-- contact us -->
   
-</section>
-
 <section id="contact">
 
 
+  <div class="container">
+    <h1>Contact Us</h1>
+    <div id="form-messages">
+    </div>
+
+    <form id="ajax-contact" method="post" action="assets/php/mailer.php">
+    <div class="field">
+        <label for="nameFirst">First Name:</label>
+        <input type="text" id="nameFirst" name="name" required>
+    </div>
+
+    <div class="field">
+        <label for="nameLast">Last Name:</label>
+        <input type="text" id="nameLast" name="name" required>
+    </div>
+
+    <div class="field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="field">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+    </div>
+
+    <div class="field">
+        <button class="btn btn-secondary" type="submit">Send</button>
+    </div>
+    </form>
+
+
+
+
+  </div>
+</section>
+
+<!-- smoothscroll -->
+
+  <div id="upArrow">
+    <br />
+    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
+  </div>
 
 
 	<!-- Optional JavaScript -->
@@ -366,11 +589,15 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-	<!-- link Js file (place at bottom above /body) -->
-	<script src="assets/js/main.js" type="text/javascript"></script>
+  <!-- link p5 file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
 
+  <!-- link Js file (place at bottom above /body) -->
+  <script src="assets/js/main.js" type="text/javascript"></script>
 
-
+  <!-- link smoothscroll.js file (place at bottom above /body) -->
+  <script type="text/javascript" src="assets/js/smoothscroll.min.js"></script>
+  
 </body>
 </html>
 
