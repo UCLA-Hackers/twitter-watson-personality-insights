@@ -1,12 +1,7 @@
-$(document).ready(function() { // this is shorthand for '$(document).ready(function(){'
+$(document).ready(function() {
     // -------------------- I. VARIABLES + INITIALIZE DATABASE --------------------
-    var ebayKeyword;
 
-    //Set the carousel rotation timing
-    $(".carousel").carousel({
-        pause: true,
-        interval: 2000,
-    });
+    var ebayKeyword;
 
     // Initialize Firebase
     var config = {
@@ -20,7 +15,8 @@ $(document).ready(function() { // this is shorthand for '$(document).ready(funct
     firebase.initializeApp(config);
 
     // -------------------- II. FUNCTIONS -------------------
-    // This function is a widget for displaying twitter feeds on html
+
+    // Twitter feed widget
     window.twttr = (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0],
             t = window.twttr || {};
@@ -36,7 +32,13 @@ $(document).ready(function() { // this is shorthand for '$(document).ready(funct
         return t;
     }(document, "script", "twitter-wjs"));
 
-    // This function determines the most dominant personality trait
+    // Bootstrap carousel transition
+    $(".carousel").carousel({
+        pause: true,
+        interval: 2000,
+    });
+
+    // Determines the most dominant personality trait
     function getMax(arr, prop) {
         var max;
         for (var i = 0; i < arr.length; i++) {
@@ -46,10 +48,9 @@ $(document).ready(function() { // this is shorthand for '$(document).ready(funct
         return max;
     };
 
-
-
     // -------------------- III. MAIN PROCSS --------------------
-    // pull twitter handle
+
+    // User input
     $("#twitterInput").submit(function(event) {
         $(".twitterHandleUpdate").empty();
         event.preventDefault(); // this line prevents the form entries from disappearing. must include 'event' in the above function
@@ -74,7 +75,7 @@ $(document).ready(function() { // this is shorthand for '$(document).ready(funct
         // Communicates with proxy API, Twitter + Watson's Personality Insights
         $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
 
-        	// Renders the sunburst
+            // Renders the sunburst
             // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
             var chart = new PersonalitySunburstChart({ 'selector': '#sunburstChart', 'version': 'v3' });
             chart.show(data, './profile_photo.jpg');
