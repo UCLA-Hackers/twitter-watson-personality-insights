@@ -146,19 +146,20 @@ $(document).ready(function() {
             function shoppingAlgorithm() {
                 if (personality.name === "Openness") {
                     ebayKeyword = ["Paint-set", "utility-knife", "philosophy-book", "abstract-painting", "fixed-gear-bike"];
-                    shuffle();
+   
                 } else if (personality.name === "Conscientiousness") {
                     ebayKeyword = ["calendar", "kindle", "smart-watch", "exercise-equipment", "shoe-organizer"];
-                    shuffle();
+    
                 } else if (personality.name === "Extraversion") {
                     ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball,backpacking"];
-                    shuffle();
+               
                 } else if (personality.name === "Agreeableness") {
                     ebayKeyword = ["greeting-cards", "stationery", "home-decor", "sunglasses", "wine-bottle-opener"];
-                    shuffle();
+          
                 } else if (personality.name === "Emotional Range") {
                     ebayKeyword = ["Stress-Ball", "fidget-spinner", "back-massager", "candles", "hammock"];
-                    shuffle();
+         
+                    
                 };
                 console.log(ebayKeyword);
                 // 1. make ebayKeyword an array
