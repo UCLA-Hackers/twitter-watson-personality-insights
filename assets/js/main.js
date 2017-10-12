@@ -48,6 +48,18 @@ $(document).ready(function() {
         return max;
     };
 
+    // Fisher-Yates Shuffle - shuffles the shopping suggestions in the array
+    function shuffle() {
+        var i = (ebayKeyword.length), j, temp;
+        while (--i > 0) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = ebayKeyword[j];
+            ebayKeyword[j] = ebayKeyword[i];
+            ebayKeyword[i] = temp;
+        }
+        console.log(ebayKeyword);
+    }
+
     // Firebase Login/out State Change Function
     firebase.auth().onAuthStateChanged(function(user) {
         window.user = user
@@ -58,7 +70,6 @@ $(document).ready(function() {
             $('#log-in').show()
             $('#log-out').hide()
         }
-        console.log(user);
     });
 
     // Firebase Login function
@@ -134,17 +145,29 @@ $(document).ready(function() {
 
             function shoppingAlgorithm() {
                 if (personality.name === "Openness") {
-                    ebayKeyword = "Paint-set,utility-knife,philosophy-book,abstract-painting,fixed-gear-bike";
+                    ebayKeyword = ["Paint-set", "utility-knife", "philosophy-book", "abstract-painting", "fixed-gear-bike"];
+                    shuffle();
                 } else if (personality.name === "Conscientiousness") {
-                    ebayKeyword = "calendar,kindle,smart-watch,exercise-equipment,shoe-organizer";
+                    ebayKeyword = ["calendar", "kindle", "smart-watch", "exercise-equipment", "shoe-organizer"];
+                    shuffle();
                 } else if (personality.name === "Extraversion") {
-                    ebayKeyword = "Artsy-Shot-Glasses,morph-suit,suspenders,spike-ball,backpacking";
+                    ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball,backpacking"];
+                    shuffle();
                 } else if (personality.name === "Agreeableness") {
-                    ebayKeyword = "greeting-cards,stationery,home-decor,sunglasses,wine-bottle-opener";
+                    ebayKeyword = ["greeting-cards", "stationery", "home-decor", "sunglasses", "wine-bottle-opener"];
+                    shuffle();
                 } else if (personality.name === "Emotional Range") {
-                    ebayKeyword = "Stress-Ball,fidget-spinner,back-massager,candles,hammock";
+                    ebayKeyword = ["Stress-Ball", "fidget-spinner", "back-massager", "candles", "hammock"];
+                    shuffle();
                 };
+                console.log(ebayKeyword);
+                // 1. make ebayKeyword an array
+                // 2. shuffle array with FisherYates Shuffle
+                // 3. Take the first two indexes and cut off the rest of the array
+                // 4. Concatenate the array into one string
+                // 5. Find the spaces and remove them
             };
+            console.log(ebayKeyword);
             shoppingAlgorithm();
 
             // Ebay AJAX API call
