@@ -37,9 +37,11 @@
 </head>
 
 <body>
-    <div id="pageTop"></div>
+    <!-- placed here for the up arrow feature -->
+    <div id="pageTop"></div> 
+    
     <!-- header -->
-    <section id="intro">
+    <section id="navigation">
         <!-- navigation -->
         <div id="menu">
             <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
@@ -76,31 +78,37 @@
                 </div>
             </nav>
         </div>
+    </section>
         <!-- video header -->
-        <div id="header">
-            <div class="jumbotron">
-                <video id="video-background" preload muted autoplay loop>
-                    <source src="assets/videos/708213662.mp4" type="video/mp4">
-                </video>
-                <div class="container">
-                    <h1>Twitter Watson Personality Insights</h1>
-                    <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
-                    <!-- </div> -->
-                    <form id="twitterInput">
+
+    <section id="intro">
+        <div id="video-container">
+            <video id="video-background" preload muted autoplay loop>
+                <source src="assets/videos/708213662.mp4" type="video/mp4">
+                <img src="assets/images/708213662_still.png" title="Your browser does not support the <video> tag">
+            </video>
+            <!-- <div class="container"> -->
+            <div class="overlay-desc">
+                <h1>Twitter Watson Personality Insights</h1>
+                <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
+                <form id="twitterInput">
+                    <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-3">
+                            <div class="col-xs-4 col-md-4">
                                 <label for="twitterName" class="sr-only">twitter name</label>
                                 <input type="text" class="form-control" id="twitterName" placeholder="@twitter-name-example" pattern="^@[A-Za-z0-9]+$" required />
                                 <!-- the + means one or more times and $ is the end of string anchor -->
                             </div>
-                            <div class="col-3">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                                 <button class="btn btn-twitter" type="submit">
                                     <span class="fa fa-twitter"></span> Click to Get Personality
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- scrolling home button -->
@@ -109,6 +117,7 @@
         </div>
     </section>
     <!-- this closes the entire header section -->
+
     <!-- twitter feed -->
     <section id="twitter">
         <!-- <img id="twitBg" src="assets/images/Twitterbird.png"> -->
@@ -428,17 +437,21 @@
     <!-- contact us -->
     <section id="contact">
         <div class="container">
-            <h1>Contact Us</h1>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="contactUs">Contact Us</h2>
+                </div>
+            </div>
             <div id="form-messages">
             </div>
             <form id="ajax-contact" method="post" action="assets/php/mailer.php">
                 <div class="field">
                     <label for="nameFirst">First Name:</label>
-                    <input type="text" id="nameFirst" name="name" required>
+                    <input type="text" id="nameFirst" name="nameFirst" required>
                 </div>
                 <div class="field">
                     <label for="nameLast">Last Name:</label>
-                    <input type="text" id="nameLast" name="name" required>
+                    <input type="text" id="nameLast" name="nameLast" required>
                 </div>
                 <div class="field">
                     <label for="email">Email:</label>
