@@ -1,619 +1,507 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-	<title>Twitter Based Personality Insights Via Watson</title>
-
-	<!-- favicon -->
-  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-
-	<!-- mobile 1st -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- character encoding -->
-	<meta charset="utf-8">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-	<!-- reset -->
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
-	<!-- link CSS file -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-  <!-- link bootstrap social file (use with font awesome) -->  
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-social.css">
-
-  <!-- link font awesome file -->
-  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
-  <!-- twitter js file -->
-  <!-- <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-  <!-- this twitter js file may not be needed -->
-
-	<!-- LINK TO FIREBASE GOES HERE -->
+    <title>Twitter Based Personality Insights Via Watson</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- mobile 1st -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- character encoding -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- link CSS file -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- link bootstrap social file (use with font awesome) -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-social.css">
+    <!-- link font awesome file -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!-- twitter js file -->
+    <!-- <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+    <!-- this twitter js file may not be needed -->
+    <!-- LINK TO FIREBASE GOES HERE -->
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
-    
-  <!-- Firebase Style Sheet for Login -->
-   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
-   <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
-
+    <!-- Firebase Style Sheet for Login -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
     <!-- Added Moment JS -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
-
-	<!-- link to D3 -->
-	<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-
-
-
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
+    <!-- link to D3 -->
+    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
 </head>
+
 <body>
-
-<!-- header -->
-<section id="intro">
-
-  <!-- navigation -->
-  <div id="menu">
-
-      
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">  <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#intro">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
-      </li>
-        <button class="btn btn-outline-secondary nav-link" data-toggle="modal" data-target="#loginModal" id="modalBtn">Login</button>  <!-- what is nav-link and is it needed for the button? -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">  <!-- .modal-lg makes the modal bigger than the default size -->
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login with Your ID</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col">
-                      <div class="js-scroll-trigger">
-                        
-                      </div>
+    <div id="pageTop"></div>
+    <!-- header -->
+    <section id="intro">
+        <!-- navigation -->
+        <div id="menu">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
+                    <!-- must keep #navbarTogglerDemo01 in or else the collapse will not work -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#intro">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
+                        </li>
+                        <li class="nav-item" id="log-in">
+                            <!-- the id must be included based on how we built the login this time around -->
+                            <!-- Button trigger modal -->
+                            <a class="nav-link" data-toggle="modal" data-target="#firebaseModal" id="firebaseModalBtn">
+            Login
+            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- video header -->
+        <div id="header">
+            <div class="jumbotron">
+                <video id="video-background" preload muted autoplay loop>
+                    <source src="assets/videos/708213662.mp4" type="video/mp4">
+                </video>
+                <div class="container">
+                    <h1>Twitter Watson Personality Insights</h1>
+                    <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
+                    <!-- </div> -->
+                    <form id="twitterInput">
+                        <div class="row justify-content-center">
+                            <div class="col-3">
+                                <label for="twitterName" class="sr-only">twitter name</label>
+                                <input type="text" class="form-control" id="twitterName" placeholder="@twitter-name-example" pattern="^@[A-Za-z0-9]+$" required />
+                                <!-- the + means one or more times and $ is the end of string anchor -->
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-twitter" type="submit">
+                                    <span class="fa fa-twitter"></span> Click to Get Personality
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- scrolling home button -->
+        <div id="upArrow">
+            <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
+        </div>
+    </section>
+    <!-- this closes the entire header section -->
+    <!-- twitter feed -->
+    <section id="twitter">
+        <!-- <img id="twitBg" src="assets/images/Twitterbird.png"> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="twitHandle">Personality Profile</h2>
+                </div>
+            </div>
+            <!-- twitter profile pic -->
+            <div id="twitImg">
+                <img class="rounded-circle" src="https://pbs.twimg.com/profile_images/914329372714323971/Xd8pGF7H_400x400.jpg" />
+                <!-- here we need to dynamically update the href -->
+                <!-- dynamically adds the twitter handle -->
+            </div>
+            <!-- latest tweet and watson profile -->
+            <div id="latestTweetTitle">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <p>Latest Tweet</p>
+                        <div id="latestTweet">
+                            <div class="twitterHandleUpdate">
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>         
-    </ul>
-  </div>
-</nav>
-
-
- <!--      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
-        <div class="dropdown-menu"> -->
-                
-
-<!-- <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button> -->
-
-          <!-- modal -->
-          <!-- <button class="nav-link js-scroll-trigger" href="#login" id="log-in">Log In</button> -->   <!-- href #login isn't tied to anything -->
-
-
-  <!-- Firebase Google/Twitter/Email Login Display -->
-  <div class="container">
-    <!-- The Modal -->
-    <div id="myFirebaseModal" class="modal">  <!-- okay to change class name -->
-      <!-- Modal content -->
-      <div class="modal-content" id="firebase-login-container">
-        <span class="close">x close</span>
-        <div id="firebaseui-auth-container"></div>
-      </div>
-    </div>
-  </div>
-
-
-
-  </div>
-
-  <!-- video header -->
-  <div id="header">
-    <div class="jumbotron">
-      <video id="video-background" preload muted autoplay loop>
-        <source src="assets/videos/708213662.mp4" type="video/mp4">
-      </video>
-
-
-      <div class="container">
-    <h1>Twitter Watson Personality Insights</h1>
-      <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
-      <!-- </div> -->
-       
-
-        <form>
-          <div class="row justify-content-center">
-            <div class="col-3">
-              <label for="twitterName" class="sr-only">twitter name</label>
-              <input type="text" class="form-control" id="twitterName" placeholder="@twitter-name-example" pattern="^@[A-Za-z0-9]+$"required />
-              <!-- the + means one or more times and $ is the end of string anchor -->
-            </div>
-            <div class="col-3">
-              <button class="btn btn-twitter" type="submit">
-                <span class="fa fa-twitter"></span> Click to Get Personality
-              </button>
-            </div>
-          </div>  
-        </form>
-      </div>
-    </div>
-  </div>
-</section>  <!-- this closes the entire header section -->
-
-<!-- twitter feed -->
-
-
-<section id="twitter">
-
-
-  <!-- <img id="twitBg" src="assets/images/Twitterbird.png"> -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="twitHandle">Personality Profile</h2>
-      </div>
-    </div>
-
-
-
-    <!-- twitter profile pic -->
-    <div id="twitImg">
-      <img class="rounded-circle" src="https://pbs.twimg.com/profile_images/914329372714323971/Xd8pGF7H_400x400.jpg" />  <!-- here we need to dynamically update the href -->
-    <!-- dynamically adds the twitter handle -->
-    </div>
-
-    <!-- latest tweet and watson profile -->
-    <div id="latestTweetTitle">
-
-      <div class="row justify-content-center">
-        <div class="col-6">
-          <p>Latest Tweet</p>
-          <div id="latestTweet">
-            <div class="twitterHandleUpdate">
-        <!--     <blockquote class="twitter-tweet">
-              <a class="twitter-timeline"
-              href="https://twitter.com/Pornhub" data-tweet-limit="1" data-chrome="noheader nofooter transparent">
-              Tweets by someone
-              </a>
-            </blockquote> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-6" id="personalityProfile">
-          <p>Watson Profile</p>
-          <dl>
-            <li>Likely to indulge in spur of the moment purchases</li>
-            <li>Likely to be influenced by family when making product purchases</li>
-            <li>Likely to prefer style when buying clothes</li>
-            <li>Likely to be influenced by social media when making product purchases</li>
-            <li>Likely to be influenced by online ads when making product purchases</li>
-            <li>Likely to eat out frequently</li>
-            <li>Likely to have a gym membership</li>
-            <li>Likely to like outdoor activities</li>
-          </dl>
-
-          <!-- button triggering modal -->
-          <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="modalBtn">Click to View Sunburst Profile</button>
-
-          <!-- modal -->
-          <div class="modal fade" id="sunburstModal" tabindex="-1" role="dialog" aria-labelledby="sunburstModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">  <!-- .modal-lg makes the modal bigger than the default size -->
-              <div class="modal-content">
-
-                <div class="modal-header">
-                  <h5 class="modal-title" id="sunburstModalLabel">Sunburst Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col">
-                        <img src="assets/images/sunburst_sample.png" />
-                      </div>
+                    <div class="col-6" id="personalityProfile">
+                        <p>Watson Profile</p>
+                        <dl>
+                            <li>Likely to indulge in spur of the moment purchases</li>
+                            <li>Likely to be influenced by family when making product purchases</li>
+                            <li>Likely to prefer style when buying clothes</li>
+                            <li>Likely to be influenced by social media when making product purchases</li>
+                            <li>Likely to be influenced by online ads when making product purchases</li>
+                            <li>Likely to eat out frequently</li>
+                            <li>Likely to have a gym membership</li>
+                            <li>Likely to like outdoor activities</li>
+                        </dl>
+                        <!-- button triggering modal -->
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#sunburstModal" id="watsonModalBtn">Click to View Sunburst Profile</button>
+                        <!-- modal -->
+                        <div class="modal fade" id="sunburstModal" tabindex="-1" role="dialog" aria-labelledby="sunburstModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <!-- .modal-lg makes the modal bigger than the default size -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sunburstModalLabel">Sunburst Profile</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div id="sunburstChart"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-</section>
-
-<!-- shopping carousel -->
-
-
-<section id="shopping">
-
-
-  <!-- carousel -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-      <img src="assets/images/EBay_logo.png" />
-      <h2>Gift Recommendations</h2>
-      </div>
-    </div>
-<!--      <div class="row">
-      <div class="col-md-offset-2 col-md-8"> -->
-
-    <div class="carousel slide" data-ride="carousel" id="shop-carousel">
-      <!-- Bottom Carousel Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#shop-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#shop-carousel" data-slide-to="1"></li>
-        <li data-target="#shop-carousel" data-slide-to="2"></li>
-      </ol>
-      
-      <!-- carousel slides / items -->
-      <div class="carousel-inner" role="listbox">
-      
-
-    
-        <div class="carousel-item active">
-          <!-- page 1 -->
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl0">
+        </div>
+    </section>
+    <!-- shopping carousel -->
+    <section id="shopping">
+        <!-- carousel -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img src="assets/images/EBay_logo.png" />
+                    <h2>Gift Recommendations</h2>
+                </div>
+            </div>
+            <div class="carousel slide" data-ride="carousel" id="shop-carousel">
+                <!-- Bottom Carousel Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#shop-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#shop-carousel" data-slide-to="1"></li>
+                    <li data-target="#shop-carousel" data-slide-to="2"></li>
+                </ol>
+                <!-- carousel slides / items -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <!-- page 1 -->
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl0">
               <img class="rounded d-block img-fluid" src="" id="productImg0" />
               <p class="productTitle0">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl1">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl1">
               <img class="rounded d-block img-fluid" src="" id="productImg1" />
               <p class="productTitle1">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl2">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl2">
               <img class="rounded d-block img-fluid" src="" id="productImg2" />
               <p class="productTitle2">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl3">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl3">
               <img class="rounded d-block img-fluid" src="" id="productImg3" />
               <p class="productTitle3">Coming soon</p>
               </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl4">
               <img class="rounded d-block img-fluid" src="" id="productImg4" />
               <p class="productTitle4">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl5">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl5">
               <img class="rounded d-block img-fluid" src="" id="productImg5" />
               <p class="productTitle5">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl6">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl6">
               <img class="rounded d-block img-fluid" src="" id="productImg6" />
               <p class="productTitle6">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl7">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl7">
               <img class="rounded d-block img-fluid" src="" id="productImg7" />
               <p class="productTitle7">Coming soon</p>
               </a>
-            </div>
-          </div>
-        </div>
-
-          <!-- page 2 -->
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl8">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- page 2 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl8">
               <img class="rounded d-block img-fluid" src="" id="productImg8" />
               <p class="productTitle8">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl9">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl9">
               <img class="rounded d-block img-fluid" src="" id="productImg9" />
               <p class="productTitle9">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl10">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl10">
               <img class="rounded d-block img-fluid" src="" id="productImg10" />
               <p class="productTitle10">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl11">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl11">
               <img class="rounded d-block img-fluid" src="" id="productImg11" />
               <p class="productTitle11">Coming soon</p>
               </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl12">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl12">
               <img class="rounded d-block img-fluid" src="" id="productImg12" />
               <p class="productTitle12">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl13">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl13">
               <img class="rounded d-block img-fluid" src="" id="productImg13" />
               <p class="productTitle13">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl14">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl14">
               <img class="rounded d-block img-fluid" src="" id="productImg14" />
               <p class="productTitle14">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl15">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl15">
               <img class="rounded d-block img-fluid" src="" id="productImg15" />
               <p class="productTitle15">Coming soon</p>
               </a>
-            </div>
-          </div>
-        </div>
-
-          <!-- page 3 -->
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl16">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- page 3 -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl16">
               <img class="rounded d-block img-fluid" src="" id="productImg16" />
               <p class="productTitle16">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl17">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl17">
               <img class="rounded d-block img-fluid" src="" id="productImg17" />
               <p class="productTitle17">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl18">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl18">
               <img class="rounded d-block img-fluid" src="" id="productImg18" />
               <p class="productTitle18">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl19">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl19">
               <img class="rounded d-block img-fluid" src="" id="productImg19" />
               <p class="productTitle19">Coming soon</p>
               </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl20">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl20">
               <img class="rounded d-block img-fluid" src="" id="productImg20" />
               <p class="productTitle20">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl21">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl21">
               <img class="rounded d-block img-fluid" src="" id="productImg21" />
               <p class="productTitle21">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl22">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl22">
               <img class="rounded d-block img-fluid" src="" id="productImg22" />
               <p class="productTitle22">Coming soon</p>
               </a>
-            </div>
-            <div class="col-md-3 text-center grow">
-              <a href="" target="_blank" id="productUrl23">
+                            </div>
+                            <div class="col-md-3 text-center grow">
+                                <a href="" target="_blank" id="productUrl23">
               <img class="rounded d-block img-fluid" src="" id="productImg23" />
               <p class="productTitle23">Coming soon</p>
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <a class="carousel-control-prev" href="#shop-carousel" role="button" data-slide="prev">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#shop-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#shop-carousel" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#shop-carousel" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-      </a>                    
-    </div>
-  </div>
-</section>
-
-<!-- team members -->
-
-<section id="about">
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12" id="headline">
-        <h2>Who We Are</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi eum voluptatem deserunt harum ab corporis libero consequuntur incidunt nobis dolorem deleniti, laborum sit a tempore aperiam, quas omnis cumque est aliquid quis delectus alias quasi maiores! Soluta ea explicabo doloremque neque tempore non, perspiciatis sunt dolor quam unde? Saepe, commodi.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2>Meet The Team</h2>
-      </div>
-    </div>
-    <a href="https://github.com/ykeanu" target="_blank">
-    <div class="row justify-content-center">
-      <div class="col-3">
-        <img class="rounded-circle" src="assets/images/izzy.jpeg" />
-      </div>
-      <div class="col-5 profile">
-        <h3>Izzy Hernandez</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
-      </div>
-    </div>
-    </a>
-    <a href="https://github.com/dlowkeen" target="_blank">
-    <div class="row justify-content-center">
-      <div class="col-3">
-        <img class="rounded-circle" src="assets/images/donovan.jpeg" />
-      </div>
-      <div class="col-5 profile">
-        <h3>Dononvan Lowkeen</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
-      </div>
-    </div>
-    </a>
-    <a href="https://github.com/mikeyamato" target="_blank">
-    <div class="row justify-content-center">
-      <div class="col-3">
-        <img class="rounded-circle" src="assets/images/mike.jpeg" />
-      </div>
-      <div class="col-5 profile">
-        <h3>Mike Yamato</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
-      </div>
-    </div>
-    </a>
-  </div>
-</section>
-
-<!-- contact us -->
-  
-<section id="contact">
-
-
-  <div class="container">
-    <h1>Contact Us</h1>
-    <div id="form-messages">
-    </div>
-
-    <form id="ajax-contact" method="post" action="assets/php/mailer.php">
-    <div class="field">
-        <label for="nameFirst">First Name:</label>
-        <input type="text" id="nameFirst" name="name" required>
-    </div>
-
-    <div class="field">
-        <label for="nameLast">Last Name:</label>
-        <input type="text" id="nameLast" name="name" required>
-    </div>
-
-    <div class="field">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-
-    <div class="field">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-    </div>
-
-    <div class="field">
-        <button class="btn btn-secondary" type="submit">Send</button>
-    </div>
-    </form>
-
-
-
-
-  </div>
-</section>
-
-<!-- smoothscroll -->
-
-  <div id="upArrow">
-    <br />
-    <img src="assets/images/arrow-up.png" class="js-scroll-to-top">
-  </div>
-
-
-	<!-- Optional JavaScript -->
+      </a>
+            </div>
+        </div>
+    </section>
+    <!-- team members -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="headline">
+                    <h2>Who We Are</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi eum voluptatem deserunt harum ab corporis libero consequuntur incidunt nobis dolorem deleniti, laborum sit a tempore aperiam, quas omnis cumque est aliquid quis delectus alias quasi maiores! Soluta ea explicabo doloremque neque tempore non, perspiciatis sunt dolor quam unde? Saepe, commodi.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Meet The Team</h2>
+                </div>
+            </div>
+            <a href="https://github.com/ykeanu" target="_blank">
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <img class="rounded-circle" src="assets/images/izzy.jpeg" />
+                    </div>
+                    <div class="col-5 profile">
+                        <h3>Izzy Hernandez</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://github.com/dlowkeen" target="_blank">
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <img class="rounded-circle" src="assets/images/donovan.jpeg" />
+                    </div>
+                    <div class="col-5 profile">
+                        <h3>Dononvan Lowkeen</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://github.com/mikeyamato" target="_blank">
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <img class="rounded-circle" src="assets/images/mike.jpeg" />
+                    </div>
+                    <div class="col-5 profile">
+                        <h3>Mike Yamato</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!-- contact us -->
+    <section id="contact">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <div id="form-messages">
+            </div>
+            <form id="ajax-contact" method="post" action="assets/php/mailer.php">
+                <div class="field">
+                    <label for="nameFirst">First Name:</label>
+                    <input type="text" id="nameFirst" name="name" required>
+                </div>
+                <div class="field">
+                    <label for="nameLast">Last Name:</label>
+                    <input type="text" id="nameLast" name="name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="field">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="field">
+                    <button class="btn btn-secondary" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- link p5 file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.15/p5.min.js"></script>
+    <!-- link smoothscroll.js file (place at bottom above /body) -->
+    <script type="text/javascript" src="assets/js/smoothscroll.min.js"></script>
+    <script type="text/javascript" src="assets/js/d3.v3.5.17.js"></script>
+    <script type="text/javascript" src="assets/js/sunburst.js"></script>
+    <script type="text/javascript" src="assets/js/d3color.js"></script>
+    <!-- link Js file (place at bottom above /body) -->
+    <script src="assets/js/main.js" type="text/javascript"></script>
 
-  <!-- link p5 file -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
 
-  <!-- link Js file (place at bottom above /body) -->
-  <script src="assets/js/main.js" type="text/javascript"></script>
-
-  <!-- link smoothscroll.js file (place at bottom above /body) -->
-  <script type="text/javascript" src="assets/js/smoothscroll.min.js"></script>
-  
 </body>
+<!-- modal for login only works outside of 'body'. why? -->
+<div class="modal fade" id="firebaseModal" tabindex="-1" role="dialog" aria-labelledby="firebaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="firebaseModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="firebaseui-auth-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </html>
-
-
-
-
 <!--                                          
                                               
 
                                               
         _         *beep beep*           _     
        | ^                             | ^    
-	   |	  	                       |      
-       |       	_____  ~~~~~~~~~~~~    |      
-   	   |     __/ # # \__  ~~~~~~~~~~   |      
-   	   |    [___________]  ~~~~~~~~~~  |      
+     |                             |      
+       |        _____  ~~~~~~~~~~~~    |      
+       |     __/ # # \__  ~~~~~~~~~~   |      
+       |    [___________]  ~~~~~~~~~~  |      
 *************(O)*****(O)************************ 
                                                 
                                                 
