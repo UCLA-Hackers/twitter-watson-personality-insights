@@ -48,7 +48,56 @@ $(document).ready(function() {
         return max;
     };
 
+    // Firebase Login/out State Change Function
+    firebase.auth().onAuthStateChanged(function(user) {
+        window.user = user
+        if (window.user) {
+            $('#log-in').hide()
+            $('#log-out').show()
+        } else {
+            $('#log-in').show()
+            $('#log-out').hide()
+        }
+        console.log(user);
+    });
+
+    // Firebase Login function
+    $('#log-in').click(function() {
+        firebase.auth().then(function(result) {
+            window.user = result.user;
+        }).catch(function(error) {
+            console.log(error)
+        })
+    })
+
+    // Firebase Logout function
+    $('#log-out').click(function() {
+        firebase.auth().signOut()
+    })
+
+
     // -------------------- III. MAIN PROCSS --------------------
+
+    // FirebaseUI config AND Login functionality
+    var uiConfig = {
+            signInSuccessUrl: '/',
+            signInOptions: [
+
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+    };
+
+    // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
 
     // User input
     $("#twitterInput").submit(function(event) {
@@ -158,65 +207,46 @@ $(document).ready(function() {
         firebaseModal.style.display = "none";
     };
 
-    // FirebaseUI config AND Login functionality
-    var uiConfig = {
-        signInSuccessUrl: 'login.html',
-        signInOptions: [
 
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-            // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            // firebase.auth.PhoneAuthProvider.PROVIDER_ID
-        ],
-        // Terms of service url.
-        tosUrl: '<your-tos-url>'
-    };
-
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-    // modal
-    // dynamically changes the height of the modal when the modal is open
-    $("#sunburstModal").modal('handleUpdate');
-    // smooth scrolling
-    window.addEventListener("load", function() {
-        // scroll back home using the arrow up button
-        document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#pageTop").scrollIntoView({ behavior: "smooth" });
-        });
-        // scroll down to twitter
-        document.querySelector("#scrollToTwitter").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#twitter").scrollIntoView({ behavior: "smooth" });
-        });
-        // scroll down to shopping
-        document.querySelector("#scrollToShopping").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#shopping").scrollIntoView({ behavior: "smooth" });
-        });
-        // scroll down to about us
-        document.querySelector("#scrollToAbout").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
-        });
-        // scroll down to contact
-        document.querySelector("#scrollToContact").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-        });
+// modal
+// dynamically changes the height of the modal when the modal is open
+$("#sunburstModal").modal('handleUpdate');
+// smooth scrolling
+window.addEventListener("load", function() {
+    // scroll back home using the arrow up button
+    document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector("#pageTop").scrollIntoView({ behavior: "smooth" });
     });
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() { scrollFunction() };
+    // scroll down to twitter
+    document.querySelector("#scrollToTwitter").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector("#twitter").scrollIntoView({ behavior: "smooth" });
+    });
+    // scroll down to shopping
+    document.querySelector("#scrollToShopping").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector("#shopping").scrollIntoView({ behavior: "smooth" });
+    });
+    // scroll down to about us
+    document.querySelector("#scrollToAbout").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
+    });
+    // scroll down to contact
+    document.querySelector("#scrollToContact").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
+    });
+});
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() { scrollFunction() };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            document.getElementById("upArrow").style.display = "block";
-        } else {
-            document.getElementById("upArrow").style.display = "none";
-        }
-    };
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.getElementById("upArrow").style.display = "block";
+    } else {
+        document.getElementById("upArrow").style.display = "none";
+    }
+};
 });
