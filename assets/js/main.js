@@ -1,7 +1,8 @@
 $(document).ready(function() {
     // -------------------- I. VARIABLES + INITIALIZE DATABASE --------------------
 
-    var ebayKeyword;
+    var ebayKeyword = [];
+    var newEbaykeyword;
 
     // Initialize Firebase
     var config = {
@@ -48,7 +49,6 @@ $(document).ready(function() {
         return max;
     };
 
-    // Fisher-Yates Shuffle - shuffles the shopping suggestions in the array
     function shuffle() {
         var i = (ebayKeyword.length), j, temp;
         while (--i > 0) {
@@ -57,7 +57,6 @@ $(document).ready(function() {
             ebayKeyword[j] = ebayKeyword[i];
             ebayKeyword[i] = temp;
         }
-        console.log(ebayKeyword);
     }
 
     // Firebase Login/out State Change Function
@@ -70,6 +69,7 @@ $(document).ready(function() {
             $('#log-in').show()
             $('#log-out').hide()
         }
+        console.log(user);
     });
 
     // Firebase Login function
@@ -146,29 +146,18 @@ $(document).ready(function() {
             function shoppingAlgorithm() {
                 if (personality.name === "Openness") {
                     ebayKeyword = ["Paint-set", "utility-knife", "philosophy-book", "abstract-painting", "fixed-gear-bike"];
-   
                 } else if (personality.name === "Conscientiousness") {
                     ebayKeyword = ["calendar", "kindle", "smart-watch", "exercise-equipment", "shoe-organizer"];
-    
                 } else if (personality.name === "Extraversion") {
-                    ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball,backpacking"];
-               
+                    ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball", "backpacking"];
                 } else if (personality.name === "Agreeableness") {
                     ebayKeyword = ["greeting-cards", "stationery", "home-decor", "sunglasses", "wine-bottle-opener"];
-          
                 } else if (personality.name === "Emotional Range") {
                     ebayKeyword = ["Stress-Ball", "fidget-spinner", "back-massager", "candles", "hammock"];
-         
-                    
                 };
-                console.log(ebayKeyword);
-                // 1. make ebayKeyword an array
-                // 2. shuffle array with FisherYates Shuffle
-                // 3. Take the first two indexes and cut off the rest of the array
-                // 4. Concatenate the array into one string
-                // 5. Find the spaces and remove them
+                shuffle();
+                var newEbaykeyword = ebayKeyword.slice(0, 2).join();
             };
-            console.log(ebayKeyword);
             shoppingAlgorithm();
 
             // Ebay AJAX API call
@@ -180,7 +169,7 @@ $(document).ready(function() {
             url += "GLOBAL-ID=EBAY-US&";
             url += "RESPONSE-DATA-FORMAT=JSON&";
             url += "REST-PAYLOAD&";
-            url += "keywords=(" + ebayKeyword + ")&";
+            url += "keywords=(" + newEbaykeyword + ")&";
             url += "paginationInput.entriesPerPage=" + results;
             displayEbayInfo();
 
