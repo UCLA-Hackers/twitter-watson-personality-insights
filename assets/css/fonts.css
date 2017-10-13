@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'Verlag-Book';
+	src:url('../../fonts/Verlag-Book.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Verlag-Book-Bold';
+	src:url('../fonts/Verlag-Book.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Slim-Joe';
+	src:url('../fonts/Slim-Joe.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
