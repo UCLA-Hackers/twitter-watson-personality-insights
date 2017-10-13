@@ -1,32 +1,33 @@
-# ucla_bootcamp_project-1
+# GiftHub
+
+Have you ever struggled finding gifts for a friend? Is that friend on twitter? Use GiftHub to get gift suggestions for your friends! 
 
 ## Directions
-In the command line, type 'npm install' to download node packages.
+In the command line, type 'npm install' to download node packages. Go to package.json file to view dependencies.
 - Optimized for Chrome for best viewing experience.
 
-## Live Link (If relevant)
+## Live Link
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
 
-## Description on how to use the app
-
-## Requirements
-#### Add a simple description of what the HW requirements were
-
-- Add bullets
-- Like this
-
-1. Or you can use numbered lists
-2. Like this
-	- You can also add a tab and a "-" to add a sub-bullet like this
-3. Make sure the requirements are understandable
+## How To Use GiftHub
+1. Create a login
+2. Type the twitter handle of someone you'd like to purchase a gift for
+3. Browse eBay gift suggestions based off his/her personality
 
 ## Technologies Used
 #### Use bullets to list out the technologies used. For example,
 - Jquery for Dom Manipulation
-- AJAX for API GET requests
+- AJAX for API GET/POST requests
+	- Twitter, IBM Watson Personality Insights, eBay
+- D3 for data visualization
+- Node.js (npm)
+- Express.js for routing
+- Firebase for user authentication
+- Bootstrap, Google Fonts, custom CSS for styling
+- Heroku for backend Proxy APIs
+- 
 
 ## Technologies Considered But Not Used
-#### Use bullets to list out the technologies used. For example,
 - p5.js was not used because of it's native onload property. 
 
 ## Code Explaination
@@ -36,29 +37,9 @@ In the command line, type 'npm install' to download node packages.
 - This is the most important part as it will show other what your code does with out having to download the code. 
 - In essense, this will also be a form of notes that you may later reference weeks later
 
+## Authors
+Ysrael "Izzy" Hernandez
+Donovan Lowkeen
+Shinsuke "Mike" Yamato
+
 -------------
-
-##Here is an example of what a Readme could look like:
-
-### AJAX Request to Giphy (Example)
-I created a function that allowed me to make an AJAX request to the Giphy API and then allowed me to pass through a callback function in order to further process the JSON object that was returned. 
-
-```
-var settings = {
-  "url": "http://api.giphy.com/v1/gifs/search?q=funny%20cat&api_key=dc6zaTOxFJmzC",
-  "method": "GET"
-  }
-}
-function getGiphyList(cb){
-	$.ajax(settings).done(function (response) {
-	  cb(response)
-	});
-}
-```
-
-https://ucla-hackers.github.io/twitter-watson-personality-insights/
-
-
-
-## Directions
-pull 'npm install' via command line
