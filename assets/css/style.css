@@ -396,13 +396,13 @@ button {
 	line-height: 50px;
 }
 
-/*.gift {
-	color: #fff;
+.gift {
+	color: black;
 }
 
 .insights {
-	color: grey;
-}*/
+	color: red;
+}
 
 #sunburstModalLabel {
 	font-family: 'Verlag-Book';
