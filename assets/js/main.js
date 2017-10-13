@@ -151,6 +151,7 @@ $(document).ready(function() {
         // Communicates with proxy API, Twitter + Watson's Personality Insights
         $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
 
+            $("#watson-traits").empty();
             var watsonTraits = data.consumption_preferences;
             var count = 0;
             for (var i = 0; i < watsonTraits.length; i++) {
