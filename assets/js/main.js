@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     var ebayKeyword = [];
     var newEbaykeyword;
+    var twitterPic;
 
     // Initialize Firebase
     var config = {
@@ -50,9 +51,10 @@ $(document).ready(function() {
     };
 
     function shuffle() {
-        var i = (ebayKeyword.length), j, temp;
+        var i = (ebayKeyword.length),
+            j, temp;
         while (--i > 0) {
-            j = Math.floor(Math.random() * (i+1));
+            j = Math.floor(Math.random() * (i + 1));
             temp = ebayKeyword[j];
             ebayKeyword[j] = ebayKeyword[i];
             ebayKeyword[i] = temp;
@@ -91,8 +93,8 @@ $(document).ready(function() {
 
     // FirebaseUI config AND Login functionality
     var uiConfig = {
-            signInSuccessUrl: '/',
-            signInOptions: [
+        signInSuccessUrl: '/',
+        signInOptions: [
 
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -106,9 +108,9 @@ $(document).ready(function() {
     };
 
     // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
-        ui.start('#firebaseui-auth-container', uiConfig);
+    ui.start('#firebaseui-auth-container', uiConfig);
 
     // User input
     $("#twitterInput").submit(function(event) {
@@ -131,6 +133,13 @@ $(document).ready(function() {
             from: twitterHandle,
             count: 100
         };
+
+        // Update twitter picture to user input
+        $.post(`https://twitter-proxy-api.herokuapp.com/json-tweets/${twitterHandle}`, function(data) {
+            twitterPic = data.statuses[0].user.profile_image_url;
+            regSizePic = twitterPic.replace("_normal", "");
+            $("#newTwitImg").attr('src', regSizePic);
+        });
 
         // Communicates with proxy API, Twitter + Watson's Personality Insights
         $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
@@ -223,51 +232,51 @@ $(document).ready(function() {
     };
 
 
-// modal
-// dynamically changes the height of the modal when the modal is open
-$("#sunburstModal").modal('handleUpdate');
+    // modal
+    // dynamically changes the height of the modal when the modal is open
+    $("#sunburstModal").modal('handleUpdate');
 
-// smooth scrolling
-window.addEventListener("load", function() {
-    // scroll back home using the arrow up button
-    document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector("#pageTop").scrollIntoView({ behavior: "smooth" });
+    // smooth scrolling
+    window.addEventListener("load", function() {
+        // scroll back home using the arrow up button
+        document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector("#pageTop").scrollIntoView({ behavior: "smooth" });
+        });
+        // scroll down to twitter
+        document.querySelector("#scrollToTwitter").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector("#twitter").scrollIntoView({ behavior: "smooth" });
+        });
+        // scroll down to shopping
+        document.querySelector("#scrollToShopping").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector("#shopping").scrollIntoView({ behavior: "smooth" });
+        });
+        // scroll down to about us
+        document.querySelector("#scrollToAbout").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
+        });
+        // scroll down to contact
+        document.querySelector("#scrollToContact").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
+        });
     });
-    // scroll down to twitter
-    document.querySelector("#scrollToTwitter").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector("#twitter").scrollIntoView({ behavior: "smooth" });
-    });
-    // scroll down to shopping
-    document.querySelector("#scrollToShopping").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector("#shopping").scrollIntoView({ behavior: "smooth" });
-    });
-    // scroll down to about us
-    document.querySelector("#scrollToAbout").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
-    });
-    // scroll down to contact
-    document.querySelector("#scrollToContact").addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-    });
-});
 
-// When the user scrolls down from the top of the document, show the button
-window.onscroll = function() { scrollFunction() };
+    // When the user scrolls down from the top of the document, show the button
+    window.onscroll = function() { scrollFunction() };
 
-function scrollFunction() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        document.getElementById("upArrow").style.display = "block";
-    } else {
-        document.getElementById("upArrow").style.display = "none";
-    }
-};
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("upArrow").style.display = "block";
+        } else {
+            document.getElementById("upArrow").style.display = "none";
+        }
+    };
 
-// assists with the contact form
+    // assists with the contact form
 
     // Get the form.
     var form = $('#ajax-contact');
@@ -277,7 +286,7 @@ function scrollFunction() {
 
     // Set up an event listener for the contact form.
     $(form).submit(function(event) {
-    // Stop the browser from submitting the form.
+        // Stop the browser from submitting the form.
         event.preventDefault();
 
         // Serialize the form data.
@@ -316,5 +325,3 @@ function scrollFunction() {
     });
 
 });
-
-
