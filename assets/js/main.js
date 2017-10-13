@@ -93,16 +93,12 @@ $(document).ready(function() {
         firebase.auth().signOut()
     })
 
-
-    // -------------------- III. MAIN PROCSS --------------------
-
     // FirebaseUI config AND Login functionality
     if (window.location.href == "http://127.0.0.1:8080/") {
         signInSuccess = "/";
     } else {
         signInSuccess = "/twitter-watson-personality-insights/";
     }
-
     var uiConfig = {
         signInSuccessUrl: signInSuccess,
         signInOptions: [
@@ -117,12 +113,13 @@ $(document).ready(function() {
         // Terms of service url.
         tosUrl: '<your-tos-url>'
     };
-
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
+
+    // -------------------- III. MAIN PROCSS --------------------
     // User input
     $("#twitterInput").submit(function(event) {
         $(".twitterHandleUpdate").empty();
@@ -262,12 +259,10 @@ $(document).ready(function() {
         firebaseModal.style.display = "none";
     };
 
-
-    // modal
-    // dynamically changes the height of the modal when the modal is open
+    // Modal -> Dynamically changes the height of the modal when the modal is open
     $("#sunburstModal").modal('handleUpdate');
 
-    // smooth scrolling
+    // Smooth scrolling
     window.addEventListener("load", function() {
         // scroll back home using the arrow up button
         document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
