@@ -130,7 +130,7 @@
 
 		var results = 24; // to increase, the carousel structure will need to be updated
 
-		var url = "http://svcs.ebay.com/services/search/FindingService/v1?";
+		var url = "https://svcs.ebay.com/services/search/FindingService/v1?";
 		url += "OPERATION-NAME=findItemsByKeywords&";
 		url += "SERVICE-VERSION=1.13.0&";
 		url += "SECURITY-APPNAME=DonovanL-Personal-PRD-c5d74fc8f-6fb03d7d&";
