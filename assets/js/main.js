@@ -127,7 +127,7 @@ $(document).ready(function() {
     $("#twitterInput").submit(function(event) {
         $(".twitterHandleUpdate").empty();
         event.preventDefault(); // this line prevents the form entries from disappearing. must include 'event' in the above function
-
+        
         var twitterNameData = $("#twitterName").val().trim();
         var twitterHandle = twitterNameData.slice([1], twitterNameData.length); // this is to update the latest tweet. chop off @
         console.log(twitterHandle);
@@ -137,21 +137,17 @@ $(document).ready(function() {
         $(".twitterHandleUpdate").append(twitterHandleString);
         twttr.widgets.load(document.getElementById("container"));
         $(".twitHandle").html(twitterNameData + " Personality Profile");
-
         if (window.location.href == "http://127.0.0.1:8080/") {
             window.location.href = "http://127.0.0.1:8080/#twitter";
         } else {
             window.location.href = "https://ucla-hackers.github.io/twitter-watson-personality-insights/#twitter";
         }
-
-        
         var userInput;
         // Storing users input from text box
         userInput = {
             from: twitterHandle,
             count: 100
         };
-
         database.ref().push({
             twitterHandle: twitterHandle
         });
@@ -178,8 +174,6 @@ $(document).ready(function() {
                     }
                 }
             }
-
-
 
             // Renders the sunburst
             // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
