@@ -16,6 +16,9 @@ $(document).ready(function() {
         messagingSenderId: "51091543547"
     };
     firebase.initializeApp(config);
+    var database = firebase.database();
+    var twitterHandle;
+    var user_signin;
 
     // -------------------- II. FUNCTIONS -------------------
 
@@ -72,7 +75,7 @@ $(document).ready(function() {
             $('#log-in').show()
             $('#log-out').hide()
         }
-        console.log(user);
+
     });
 
     // Firebase Login function
@@ -82,6 +85,7 @@ $(document).ready(function() {
         }).catch(function(error) {
             console.log(error)
         })
+        console.log(user);
     })
 
     // Firebase Logout function
@@ -133,7 +137,14 @@ $(document).ready(function() {
         $(".twitterHandleUpdate").append(twitterHandleString);
         twttr.widgets.load(document.getElementById("container"));
         $(".twitHandle").html(twitterNameData + " Personality Profile");
-        window.location = "#twitter";
+
+        if (window.location.href == "http://127.0.0.1:8080/") {
+            window.location.href = "http://127.0.0.1:8080/#twitter";
+        } else {
+            window.location.href = "https://ucla-hackers.github.io/twitter-watson-personality-insights/#twitter";
+        }
+
+        
         var userInput;
         // Storing users input from text box
         userInput = {
@@ -141,8 +152,13 @@ $(document).ready(function() {
             count: 100
         };
 
+        database.ref().push({
+            twitterHandle: twitterHandle
+        });
+
         // Update twitter picture to user input
         $.post(`https://twitter-proxy-api.herokuapp.com/json-tweets/${twitterHandle}`, function(data) {
+            console.log(user);
             twitterPic = data.statuses[0].user.profile_image_url;
             regSizePic = twitterPic.replace("_normal", "");
             $("#newTwitImg").attr('src', regSizePic);
