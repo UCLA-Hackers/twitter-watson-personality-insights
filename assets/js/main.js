@@ -151,6 +151,19 @@ $(document).ready(function() {
         // Communicates with proxy API, Twitter + Watson's Personality Insights
         $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
 
+            var watsonTraits = data.consumption_preferences;
+            var count = 0;
+            for (var i = 0; i < watsonTraits.length; i++) {
+                for (var j = 0; j < watsonTraits[i].consumption_preferences.length; j++) {
+                    if (watsonTraits[i].consumption_preferences[j].score === 1 && count < 10) {
+                        count++;
+                        $("#watson-traits").append("<li>" + watsonTraits[i].consumption_preferences[j].name + "</li>");
+                    }
+                }
+            }
+
+
+
             // Renders the sunburst
             // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
             var chart = new PersonalitySunburstChart({ 'selector': '#sunburstChart', 'version': 'v3' });
