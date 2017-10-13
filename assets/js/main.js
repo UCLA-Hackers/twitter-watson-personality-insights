@@ -93,16 +93,12 @@ $(document).ready(function() {
         firebase.auth().signOut()
     })
 
-
-    // -------------------- III. MAIN PROCSS --------------------
-
     // FirebaseUI config AND Login functionality
     if (window.location.href == "http://127.0.0.1:8080/") {
         signInSuccess = "/";
     } else {
         signInSuccess = "/twitter-watson-personality-insights/";
     }
-
     var uiConfig = {
         signInSuccessUrl: signInSuccess,
         signInOptions: [
@@ -117,17 +113,18 @@ $(document).ready(function() {
         // Terms of service url.
         tosUrl: '<your-tos-url>'
     };
-
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
+
+    // -------------------- III. MAIN PROCSS --------------------
     // User input
     $("#twitterInput").submit(function(event) {
         $(".twitterHandleUpdate").empty();
         event.preventDefault(); // this line prevents the form entries from disappearing. must include 'event' in the above function
-
+        
         var twitterNameData = $("#twitterName").val().trim();
         var twitterHandle = twitterNameData.slice([1], twitterNameData.length); // this is to update the latest tweet. chop off @
         console.log(twitterHandle);
@@ -137,21 +134,17 @@ $(document).ready(function() {
         $(".twitterHandleUpdate").append(twitterHandleString);
         twttr.widgets.load(document.getElementById("container"));
         $(".twitHandle").html(twitterNameData + " Personality Profile");
-
         if (window.location.href == "http://127.0.0.1:8080/") {
             window.location.href = "http://127.0.0.1:8080/#twitter";
         } else {
             window.location.href = "https://ucla-hackers.github.io/twitter-watson-personality-insights/#twitter";
         }
-
-        
         var userInput;
         // Storing users input from text box
         userInput = {
             from: twitterHandle,
             count: 100
         };
-
         database.ref().push({
             twitterHandle: twitterHandle
         });
@@ -178,8 +171,6 @@ $(document).ready(function() {
                     }
                 }
             }
-
-
 
             // Renders the sunburst
             // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
@@ -268,12 +259,10 @@ $(document).ready(function() {
         firebaseModal.style.display = "none";
     };
 
-
-    // modal
-    // dynamically changes the height of the modal when the modal is open
+    // Modal -> Dynamically changes the height of the modal when the modal is open
     $("#sunburstModal").modal('handleUpdate');
 
-    // smooth scrolling
+    // Smooth scrolling
     window.addEventListener("load", function() {
         // scroll back home using the arrow up button
         document.querySelector(".js-scroll-to-top").addEventListener("click", function(e) {
