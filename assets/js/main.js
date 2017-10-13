@@ -94,7 +94,7 @@ $(document).ready(function() {
             signInSuccessUrl: '/',
             signInOptions: [
 
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.TwitterAuthProvider.PROVIDER_ID,
             // firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -152,13 +152,15 @@ $(document).ready(function() {
                     ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball", "backpacking"];
                 } else if (personality.name === "Agreeableness") {
                     ebayKeyword = ["greeting-cards", "stationery", "home-decor", "sunglasses", "wine-bottle-opener"];
-                } else if (personality.name === "Emotional Range") {
+                } else if (personality.name === "Emotional range") {
                     ebayKeyword = ["Stress-Ball", "fidget-spinner", "back-massager", "candles", "hammock"];
                 };
+                console.log(ebayKeyword, "preshuffle");
                 shuffle();
-                var newEbaykeyword = ebayKeyword.slice(0, 2).join();
+                newEbaykeyword = ebayKeyword.slice(0, 2).join();
             };
             shoppingAlgorithm();
+            console.log(newEbaykeyword, "postshuffle");
 
             // Ebay AJAX API call
             var results = 24; // to increase, the carousel structure will need to be updated
@@ -201,7 +203,7 @@ $(document).ready(function() {
             console.log(data, "PROXY API JSON OBJECT");
             console.log(arr, "PERSONALITY ITERATION OF PROXY API");
             console.log(personality, "DOMINANT PERSONALITY");
-            console.log(ebayKeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
+            console.log(newEbaykeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
             console.log(url, "THIS IS THE EBAY JSON OBJECT");
         });
     });
