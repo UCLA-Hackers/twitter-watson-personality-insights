@@ -137,11 +137,11 @@ $(document).ready(function() {
         $(".twitterHandleUpdate").append(twitterHandleString);
         twttr.widgets.load(document.getElementById("container"));
         $(".twitHandle").html(twitterNameData + " Personality Profile");
-        // if (window.location.href == "http://127.0.0.1:8080/") {
-        //     window.location.href = "http://127.0.0.1:8080/#twitter";
-        // } else {
-        //     window.location.href = "https://ucla-hackers.github.io/twitter-watson-personality-insights/#twitter";
-        // }
+        if (window.location.href == "http://127.0.0.1:8080/") {
+            window.location.href = "http://127.0.0.1:8080/#twitter";
+        } else {
+            window.location.href = "https://ucla-hackers.github.io/twitter-watson-personality-insights/#twitter";
+        }
         var userInput;
         // Storing users input from text box
         userInput = {
