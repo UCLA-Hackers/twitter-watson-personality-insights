@@ -1,7 +1,8 @@
 $(document).ready(function() {
     // -------------------- I. VARIABLES + INITIALIZE DATABASE --------------------
 
-    var ebayKeyword;
+    var ebayKeyword = [];
+    var newEbaykeyword;
 
     // Initialize Firebase
     var config = {
@@ -48,6 +49,16 @@ $(document).ready(function() {
         return max;
     };
 
+    function shuffle() {
+        var i = (ebayKeyword.length), j, temp;
+        while (--i > 0) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = ebayKeyword[j];
+            ebayKeyword[j] = ebayKeyword[i];
+            ebayKeyword[i] = temp;
+        }
+    }
+
     // Firebase Login/out State Change Function
     firebase.auth().onAuthStateChanged(function(user) {
         window.user = user
@@ -83,7 +94,7 @@ $(document).ready(function() {
             signInSuccessUrl: '/',
             signInOptions: [
 
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.TwitterAuthProvider.PROVIDER_ID,
             // firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -134,18 +145,22 @@ $(document).ready(function() {
 
             function shoppingAlgorithm() {
                 if (personality.name === "Openness") {
-                    ebayKeyword = "Paint-set,utility-knife,philosophy-book,abstract-painting,fixed-gear-bike";
+                    ebayKeyword = ["Paint-set", "utility-knife", "philosophy-book", "abstract-painting", "fixed-gear-bike"];
                 } else if (personality.name === "Conscientiousness") {
-                    ebayKeyword = "calendar,kindle,smart-watch,exercise-equipment,shoe-organizer";
+                    ebayKeyword = ["calendar", "kindle", "smart-watch", "exercise-equipment", "shoe-organizer"];
                 } else if (personality.name === "Extraversion") {
-                    ebayKeyword = "Artsy-Shot-Glasses,morph-suit,suspenders,spike-ball,backpacking";
+                    ebayKeyword = ["Artsy-Shot-Glasses", "morph-suit", "suspenders", "spike-ball", "backpacking"];
                 } else if (personality.name === "Agreeableness") {
-                    ebayKeyword = "greeting-cards,stationery,home-decor,sunglasses,wine-bottle-opener";
-                } else if (personality.name === "Emotional Range") {
-                    ebayKeyword = "Stress-Ball,fidget-spinner,back-massager,candles,hammock";
+                    ebayKeyword = ["greeting-cards", "stationery", "home-decor", "sunglasses", "wine-bottle-opener"];
+                } else if (personality.name === "Emotional range") {
+                    ebayKeyword = ["Stress-Ball", "fidget-spinner", "back-massager", "candles", "hammock"];
                 };
+                console.log(ebayKeyword, "preshuffle");
+                shuffle();
+                newEbaykeyword = ebayKeyword.slice(0, 2).join();
             };
             shoppingAlgorithm();
+            console.log(newEbaykeyword, "postshuffle");
 
             // Ebay AJAX API call
             var results = 24; // to increase, the carousel structure will need to be updated
@@ -156,7 +171,7 @@ $(document).ready(function() {
             url += "GLOBAL-ID=EBAY-US&";
             url += "RESPONSE-DATA-FORMAT=JSON&";
             url += "REST-PAYLOAD&";
-            url += "keywords=(" + ebayKeyword + ")&";
+            url += "keywords=(" + newEbaykeyword + ")&";
             url += "paginationInput.entriesPerPage=" + results;
             displayEbayInfo();
 
@@ -188,7 +203,7 @@ $(document).ready(function() {
             console.log(data, "PROXY API JSON OBJECT");
             console.log(arr, "PERSONALITY ITERATION OF PROXY API");
             console.log(personality, "DOMINANT PERSONALITY");
-            console.log(ebayKeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
+            console.log(newEbaykeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
             console.log(url, "THIS IS THE EBAY JSON OBJECT");
         });
     });
