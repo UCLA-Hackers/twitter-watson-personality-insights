@@ -4,6 +4,7 @@ $(document).ready(function() {
     var ebayKeyword = [];
     var newEbaykeyword;
     var twitterPic;
+    var signInSuccess;
 
     // Initialize Firebase
     var config = {
@@ -92,8 +93,14 @@ $(document).ready(function() {
     // -------------------- III. MAIN PROCSS --------------------
 
     // FirebaseUI config AND Login functionality
+    if (window.location.href == "http://127.0.0.1:8080/") {
+        signInSuccess = "/";
+    } else {
+        signInSuccess = "/twitter-watson-personality-insights/";
+    }
+
     var uiConfig = {
-        signInSuccessUrl: '/',
+        signInSuccessUrl: signInSuccess,
         signInOptions: [
 
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
