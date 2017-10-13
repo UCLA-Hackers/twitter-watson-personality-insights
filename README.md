@@ -2,7 +2,7 @@
 
 ## Directions
 In the command line, type 'npm install' to download node packages.
-
+- Optimized for Chrome for best viewing experience.
 
 ## Live Link (If relevant)
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
