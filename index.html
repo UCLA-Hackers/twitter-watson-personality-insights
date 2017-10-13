@@ -16,8 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!-- reset -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <!-- link CSS file -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- fonts -->
+    <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
+
     <!-- link bootstrap social file (use with font awesome) -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-social.css">
     <!-- link font awesome file -->
@@ -30,6 +31,9 @@
     <!-- Firebase Style Sheet for Login -->
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
+
+        <!-- link CSS file -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- Added Moment JS -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
     <!-- link to D3 -->
@@ -55,16 +59,13 @@
                             <a class="nav-link" href="#intro">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#twitter" id="scrollToTwitter">Personality Insights</a>
+                            <a class="nav-link" href="#twitter" id="scrollToTwitter">Insights</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping Recommendations</a>
+                            <a class="nav-link" href="#shopping" id="scrollToShopping">Shopping</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#about" id="scrollToAbout">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact" id="scrollToContact">Contact</a>
                         </li>
                         <li class="nav-item" id="log-in">
                             <!-- the id must be included based on how we built the login this time around -->
@@ -89,8 +90,8 @@
             </video>
             <!-- <div class="container"> -->
             <div class="overlay-desc">
-                <h1>Twitter Watson Personality Insights</h1>
-                <p>Do you find gift buying stressful? Let us take the burden off your shoulders by suggesting gifts based on someone's Twitter profile. Just type in their Twitter handle and click the button. It's that easy. Really.</p>
+                <h2 class="headline"><span class="gift">Gift</span> <span class="insights">Insights</span></h2>
+                <p class="bottomline">Do you find gift buying stressful? Just type in their Twitter handle and click the button. It's that easy. Really.</p>
                 <form id="twitterInput">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -157,7 +158,7 @@
                                 <!-- .modal-lg makes the modal bigger than the default size -->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="sunburstModalLabel">Sunburst Profile</h5>
+                                        <h5 class="modal-title" id="sunburstModalLabel">Personality Sunburst: Click to collapse!</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -399,7 +400,7 @@
                         <img class="rounded-circle" src="assets/images/izzy.jpeg" />
                     </div>
                     <div class="col-5 profile">
-                        <h3>Izzy Hernandez</h3>
+                        <h3>Ysrael "Izzy" Hernandez</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
                     </div>
                 </div>
@@ -422,45 +423,13 @@
                     </div>
                     <div class="col-5 profile">
                         <h3>Mike Yamato</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus vitae fugiat quisquam vel aut. Natus molestiae, eos assumenda mollitia officia!</p>
+                        <p>Global marketer with 14+ years of delivering growth in a diverse and challenging environment. A record of challenging the status-quo, recognizing and executing innovative solutions, strategic and hands-on management skills, ideally positioned to build markets and deliver growth for global organizations.</p>
                     </div>
                 </div>
             </a>
         </div>
     </section>
     <!-- contact us -->
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="contactUs">Contact Us</h2>
-                </div>
-            </div>
-            <div id="form-messages">
-            </div>
-            <form id="ajax-contact" method="post" action="assets/php/mailer.php">
-                <div class="field">
-                    <label for="nameFirst">First Name:</label>
-                    <input type="text" id="nameFirst" name="nameFirst" required>
-                </div>
-                <div class="field">
-                    <label for="nameLast">Last Name:</label>
-                    <input type="text" id="nameLast" name="nameLast" required>
-                </div>
-                <div class="field">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="field">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <div class="field">
-                    <button class="btn btn-secondary" type="submit">Send</button>
-                </div>
-            </form>
-        </div>
-    </section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
