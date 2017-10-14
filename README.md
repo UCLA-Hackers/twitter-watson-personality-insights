@@ -15,9 +15,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 3. Browse eBay gift suggestions based off his/her personality
 
 ## Sunburst Demostration
-![alt text](https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG)
-
-<img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="50%" height="50%">
+<img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="75%" height="75%">
 
 ## Technologies Used
 #### Use bullets to list out the technologies used. For example,
