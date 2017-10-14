@@ -31,7 +31,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 ## Technologies Considered But Not Used
 - p5.js was not used because of it's native onload property. 
 
-## Authors
+## Developers
 - Ysrael "Izzy" Hernandez | [GitHub](https://github.com/ykeanu)
 - Donovan Lowkeen | [GitHub](https://github.com/dlowkeen)
 - Shinsuke "Mike" Yamato | [GitHub](https://github.com/mikeyamato)
