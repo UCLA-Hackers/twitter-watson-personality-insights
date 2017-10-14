@@ -284,11 +284,6 @@ $(document).ready(function() {
             e.preventDefault();
             document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
         });
-        // scroll down to contact
-        document.querySelector("#scrollToContact").addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-        });
     });
 
     // When the user scrolls down from the top of the document, show the button
