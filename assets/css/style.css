@@ -1,6 +1,6 @@
-* {
+/** {
 	border: 1px solid red;
-}
+}*/
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -8,6 +8,12 @@ body {
 
 button {
 	cursor: pointer;
+}
+
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 4vw;
+	text-align: center;
 }
 
 /* navigation section */
@@ -128,7 +134,7 @@ button {
 	}
 
 
-	#twitter h2 {
+	#twitter h3 {
 		font-size: 40px;
 	}
 
@@ -143,8 +149,9 @@ button {
 
 	/* adjusting titles */
 	#twitter #latestTweetTitle p {
+		font-family: 'Slim-Joe';
 		text-align: center;
-		font-size: 20px;
+		font-size: 1.5vw;
 		color: #ff0000;
 		font-weight: bold;
 	}
@@ -196,7 +203,7 @@ button {
 		margin-top: 20px;
 	}
 
-	#shopping h2 {
+	#shopping h3 {
 		font-size: 40px;
 	}
 
@@ -287,7 +294,8 @@ button {
 
 	/* background img */
 	#about .container {
-		background-image: url("../images/ps_neutral.png");
+		background-image: url("../images/gplaypattern.png");
+		padding-bottom: 30px;
 	}
 
 	/* remove link effects */
@@ -305,15 +313,34 @@ button {
 	}
 
 	#about h2 {
-		font-size: 40px;
-		margin-top: 20px;
+		margin-top: 30px;
 		margin-bottom: 20px;
-		text-align: center;
+	}
+
+	#about #sub-heading h2 {
+/*		font-family: 'Slim-Joe';*/
+	}
+
+	#about p {
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	#about h3 {
-		font-size: 30px;
+		/*font-size: 40px;*/
+		margin-top: 5px;
+		margin-bottom: 20px;
+		text-align: center;
+		font-family: 'Slim-Joe';
+		font-size: 2vw;
+		/*text-align: center;*/
+		color: #ff0000;
 	}
+
+	/*#about h3 {
+		font-size: 30px;
+	}*/
 
 	#about .rounded-circle {
 		margin-top: 20px;
@@ -322,7 +349,6 @@ button {
 
 	#about p {
 		font-size: 16px;
-		color: #ff0000;
 		font-weight: bold;
 	}
 
@@ -378,16 +404,16 @@ button {
 .headline {
 	font-family: 'Slim-Joe';
 	color: black;
-		text-align: center;
-		/*margin-right: auto;*/
-		/*margin-left: auto;*/
-		/*margin-top: 10%;*/
-		letter-spacing: 3px;
-		font-size: 8vw;
-		max-width: 1200px;
-		margin-top: 6%;
-		margin-right: auto;
-		margin-left: auto;
+	text-align: center;
+	/*margin-right: auto;*/
+	/*margin-left: auto;*/
+	/*margin-top: 10%;*/
+	letter-spacing: 3px;
+	font-size: 8vw;
+	max-width: 1200px;
+	margin-top: 6%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .bottomline {
@@ -404,6 +430,19 @@ button {
 	color: red;
 }
 
-#sunburstModalLabel {
-	font-family: 'Verlag-Book';
+#sunburstModalLabel h5 {
+	font-family: 'Slim-Joe';
+	font-size: 1.5vw;
+	color: #ff0000;
 }
+
+
+/* footer */
+.footer {
+	/*background-color: #000000;*/
+	text-align: center;
+	color: #7b7c7c;
+	line-height: 30px;	
+	padding-bottom: 5px;
+}
+
