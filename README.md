@@ -1,6 +1,5 @@
 # GiftHub
 Struggling to find the gifts for your friends and family? Use Gifthub to find the perfect gift!
-
 - Analyze twitter feeds for gift recomendations based on IBM Watson's Personality Insights. Predict personality characteristics, needs and values through twitter feeds. Understand your loved ones habits and preferences on an individual level, and at scale.
 
 ## Live Link
