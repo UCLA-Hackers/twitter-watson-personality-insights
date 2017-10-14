@@ -39,32 +39,23 @@ In the command line, type 'npm install' to download node packages. Go to package
 ### Directory structure
 ```none
 .
-├── app.js                       // express entry point
-├── config                       // express configuration
-│   ├── error-handler.js
-│   ├── express.js
-│   ├── i18n.js
-│   ├── passport.js
-│   └── security.js
-├── helpers                      // utility modules
-│   ├── personality-insights.js
-│   └── twitter-helper.js
-├── i18n                         // internationalization
-│   ├── en.json
-│   ├── es.json
-│   └── ja.json
-├── manifest.yml
-├── package.json
-├── public
+├── assets			 // client-side application
 │   ├── css
-│   ├── data                     // sample text and tweets
-│   ├── fonts
+│   ├── fonts	
 │   ├── images
-│   └── js
-├── router.js                   // express routes
-├── server.js                   // application entry point
-├── test
-└── views                       // ejs views
+│   ├── js
+│   ├── json
+│   ├── php
+│   └── videos	                        
+├── router                       // server-side applicatoin
+│   └── app.js			 // express configuratoin
+├── .gitignore                   
+├── Procfile  
+├── README.md  
+├── index.html  		 // application browser
+├── package-lock.json  
+├── package.json       		 // dependencies            
+└── profile_photo.jp                
 ```
 
 ## License
