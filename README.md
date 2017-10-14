@@ -14,6 +14,8 @@ In the command line, type 'npm install' to download node packages. Go to package
 2. Type the twitter handle of someone you'd like to purchase a gift for
 3. Browse eBay gift suggestions based off his/her personality
 
+## Sunburst Demostration
+
 ## Technologies Used
 #### Use bullets to list out the technologies used. For example,
 - Jquery for Dom Manipulation
@@ -25,7 +27,6 @@ In the command line, type 'npm install' to download node packages. Go to package
 - Firebase for user authentication
 - Bootstrap, Google Fonts, custom CSS for styling
 - Heroku for backend Proxy APIs
-- 
 
 ## Technologies Considered But Not Used
 - p5.js was not used because of it's native onload property. 
@@ -38,8 +39,8 @@ In the command line, type 'npm install' to download node packages. Go to package
 - In essense, this will also be a form of notes that you may later reference weeks later
 
 ## Authors
-Ysrael "Izzy" Hernandez
-Donovan Lowkeen
-Shinsuke "Mike" Yamato
+- Ysrael "Izzy" Hernandez
+- Donovan Lowkeen
+- Shinsuke "Mike" Yamato
 
 -------------
