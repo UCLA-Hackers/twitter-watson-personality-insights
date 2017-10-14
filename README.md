@@ -18,7 +18,6 @@ In the command line, type 'npm install' to download node packages. Go to package
 <img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="85%" height="85%">
 
 ## Technologies Used
-#### Use bullets to list out the technologies used. For example,
 - Jquery for Dom Manipulation
 - AJAX for API GET/POST requests
 	- Twitter, IBM Watson Personality Insights, eBay
