@@ -61,7 +61,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 ## License
   This sample code is licensed under Apache 2.0.
 
-## Developers
+### Developers
 - Ysrael "Izzy" Hernandez | [GitHub](https://github.com/ykeanu)
 - Donovan Lowkeen | [GitHub](https://github.com/dlowkeen)
 - Shinsuke "Mike" Yamato | [GitHub](https://github.com/mikeyamato)
