@@ -14,7 +14,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 2. Type the twitter handle of someone you'd like to purchase a gift for
 3. Browse eBay gift suggestions based off his/her personality
 
-## Sunburst Demostration
+## Sunburst Example
 <img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="85%" height="85%">
 
 ## Technologies Used
