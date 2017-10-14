@@ -6,7 +6,7 @@ Struggling to find the gifts for your friends and family? Use Gifthub to find th
 ## Live Link
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
 
-## Directions for Set Up
+## Set Up Directions
 In the command line, type 'npm install' to download node packages. Go to package.json file to view dependencies.
 - Optimized for Chrome for best viewing experience.
 
@@ -36,7 +36,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 - Bootstrap, Google Fonts, custom CSS for styling
 - Heroku for backend Proxy APIs
 
-### Directory structure
+## Directory structure
 ```none
 .
 ├── assets			 // client-side application
