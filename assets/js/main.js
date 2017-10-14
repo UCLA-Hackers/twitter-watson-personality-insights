@@ -75,7 +75,6 @@ $(document).ready(function() {
             $('#log-in').show()
             $('#log-out').hide()
         }
-
     });
 
     // Firebase Login function
@@ -124,7 +123,7 @@ $(document).ready(function() {
     $("#twitterInput").submit(function(event) {
         $(".twitterHandleUpdate").empty();
         event.preventDefault(); // this line prevents the form entries from disappearing. must include 'event' in the above function
-        
+
         var twitterNameData = $("#twitterName").val().trim();
         var twitterHandle = twitterNameData.slice([1], twitterNameData.length); // this is to update the latest tweet. chop off @
         console.log(twitterHandle);
@@ -149,18 +148,10 @@ $(document).ready(function() {
             twitterHandle: twitterHandle
         });
 
-        // Update twitter picture to user input
-        $.post(`https://twitter-proxy-api.herokuapp.com/json-tweets/${twitterHandle}`, function(data) {
-            console.log(user);
-            twitterPic = data.statuses[0].user.profile_image_url;
-            regSizePic = twitterPic.replace("_normal", "");
-            $("#newTwitImg").attr('src', regSizePic);
-        });
-
-        // Communicates with proxy API, Twitter + Watson's Personality Insights
+        // Proxy API Watson's Personality Insights
         $.post(`https://twitter-watson-proxy-api.herokuapp.com/json/${twitterHandle}`, function(data) {
-
             $("#watson-traits").empty();
+            var watson = data;
             var watsonTraits = data.consumption_preferences;
             var count = 0;
             for (var i = 0; i < watsonTraits.length; i++) {
@@ -172,10 +163,19 @@ $(document).ready(function() {
                 }
             }
 
-            // Renders the sunburst
-            // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
-            var chart = new PersonalitySunburstChart({ 'selector': '#sunburstChart', 'version': 'v3' });
-            chart.show(data, './profile_photo.jpg');
+            // Proxy Twitter API
+            $.post(`https://twitter-proxy-api.herokuapp.com/json-tweets/${twitterHandle}`, function(twitter) {
+                console.log(twitter, "TWITTER OBJECT");
+                // Generates twitter profile picture
+                twitterPic = twitter.statuses[0].user.profile_image_url;
+                regSizePic = twitterPic.replace("_normal", "");
+                $("#newTwitImg").attr('src', regSizePic);
+                $(".twitLink").attr('href', `https://twitter.com/${twitterHandle}`);
+                // Renders the sunburst
+                // $('#profile').append('<pre>' + JSON.stringify(data, null, 2) + '</pre>'); // Future Update: Adding a data table.
+                var chart = new PersonalitySunburstChart({ 'selector': '#sunburstChart', 'version': 'v3' });
+                chart.show(watson, regSizePic);
+            });
 
             var arr = data.personality;
             var personality = getMax(arr, "percentile");
@@ -237,11 +237,11 @@ $(document).ready(function() {
             };
 
             // TESTING ~~~~~~~~~~~~~~~~~~
-            console.log(data, "PROXY API JSON OBJECT");
-            console.log(arr, "PERSONALITY ITERATION OF PROXY API");
-            console.log(personality, "DOMINANT PERSONALITY");
-            console.log(newEbaykeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
-            console.log(url, "THIS IS THE EBAY JSON OBJECT");
+            // console.log(data, "PROXY API JSON OBJECT");
+            // console.log(arr, "PERSONALITY ITERATION OF PROXY API");
+            // console.log(personality, "DOMINANT PERSONALITY");
+            // console.log(newEbaykeyword, "RESULTS OF SHOPPING shoppingAlgorithm");
+            // console.log(url, "THIS IS THE EBAY JSON OBJECT");
         });
     });
 
