@@ -1,7 +1,7 @@
 # GiftHub
-Analyze twitter feeds for gift recomendations based on IBM Watson's Personality Insights. Predict personality characteristics, needs and values through twitter feeds. Understand your loved ones habits and preferences on an individual level, and at scale.
+Struggling to find the gifts for your friends and family? Use Gifthub to find the perfect gift!
 
-Strggling to find the gifts for your friends and family? Use Gifthub to find the perfect gift!
+Analyze twitter feeds for gift recomendations based on IBM Watson's Personality Insights. Predict personality characteristics, needs and values through twitter feeds. Understand your loved ones habits and preferences on an individual level, and at scale.
 
 ## Live Link
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
@@ -30,7 +30,6 @@ In the command line, type 'npm install' to download node packages. Go to package
 - Heroku for backend Proxy APIs
 
 ### Directory structure
-
 ```none
 .
 ├── app.js                       // express entry point
@@ -60,12 +59,9 @@ In the command line, type 'npm install' to download node packages. Go to package
 ├── test
 └── views                       // ejs views
 ```
+
 ## License
-
   This sample code is licensed under Apache 2.0.
-
-## Technologies Considered But Not Used
-- p5.js was not used because of it's native onload property. 
 
 ## Developers
 - Ysrael "Izzy" Hernandez | [GitHub](https://github.com/ykeanu)
