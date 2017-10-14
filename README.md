@@ -6,10 +6,15 @@ Struggling to find the gifts for your friends and family? Use Gifthub to find th
 ## Live Link
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
 
-## Directions
+## Directions for Set Up
+In the command line, type 'npm install' to download node packages. Go to package.json file to view dependencies.
+- Optimized for Chrome for best viewing experience.
+
+## How to Use GiftHub
 1. Create a login
 2. Type the twitter handle of someone you'd like to purchase a gift for
-3. Browse eBay gift suggestions based off his/her personality
+3. Click sunburst graph to visualize personality data
+3. Browse eBay gift suggestions based off his/her characteristics
 
 ## Sunburst Example
 <img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="85%" height="85%">
