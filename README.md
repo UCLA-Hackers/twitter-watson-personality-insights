@@ -15,7 +15,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 3. Browse eBay gift suggestions based off his/her personality
 
 ## Sunburst Demostration
-![alt text](https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG)
+![alt text](https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG | width=100)
 
 ## Technologies Used
 #### Use bullets to list out the technologies used. For example,
@@ -40,8 +40,8 @@ In the command line, type 'npm install' to download node packages. Go to package
 - In essense, this will also be a form of notes that you may later reference weeks later
 
 ## Authors
-- Ysrael "Izzy" Hernandez
-- Donovan Lowkeen
-- Shinsuke "Mike" Yamato
+- Ysrael "Izzy" Hernandez | [GitHub](https://github.com/ykeanu)
+- Donovan Lowkeen | [GitHub](https://github.com/dlowkeen)
+- Shinsuke "Mike" Yamato | [GitHub](https://github.com/mikeyamato)
 
 -------------
