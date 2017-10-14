@@ -1,7 +1,7 @@
 # GiftHub
 Struggling to find the gifts for your friends and family? Use Gifthub to find the perfect gift!
 
-Analyze twitter feeds for gift recomendations based on IBM Watson's Personality Insights. Predict personality characteristics, needs and values through twitter feeds. Understand your loved ones habits and preferences on an individual level, and at scale.
+- Analyze twitter feeds for gift recomendations based on IBM Watson's Personality Insights. Predict personality characteristics, needs and values through twitter feeds. Understand your loved ones habits and preferences on an individual level, and at scale.
 
 ## Live Link
  - https://ucla-hackers.github.io/twitter-watson-personality-insights/
@@ -17,6 +17,12 @@ In the command line, type 'npm install' to download node packages. Go to package
 
 ## Sunburst Example
 <img src="https://raw.githubusercontent.com/UCLA-Hackers/twitter-watson-personality-insights/master/assets/images/sunburst-example.PNG" width="85%" height="85%">
+
+## Back-End
+- Proxy API: IBM Watson's Personality Insights + Twitter
+	- Repository: https://github.com/ykeanu/twitter-watson-proxy-api
+- Proxy API: Twitter 
+	- Repository: https://github.com/UCLA-Hackers/twitter-proxy-api
 
 ## Technologies Used
 - Jquery for Dom Manipulation
