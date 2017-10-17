@@ -54,7 +54,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 ├── index.html  		 // application browser
 ├── package-lock.json  
 ├── package.json       		 // dependencies            
-└── profile_photo.jp                
+└── profile_photo.jpg                
 ```
 
 ## License
