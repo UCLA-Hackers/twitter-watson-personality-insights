@@ -27,13 +27,14 @@ In the command line, type 'npm install' to download node packages. Go to package
 ## Technologies Used
 - Jquery for Dom Manipulation
 - AJAX for API GET/POST requests
-	- Twitter, IBM Watson Personality Insights, eBay
+	- Twitter, IBM Watson Personality Insights, eBay API
 - D3 for data visualization
 - Node.js (npm)
 - Express.js for routing
 - Firebase for user authentication
 - Bootstrap, Google Fonts, custom CSS for styling
 - Heroku for backend Proxy APIs
+
 
 ## Directory structure
 ```none
